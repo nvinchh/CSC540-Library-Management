@@ -1,2 +1,2 @@
-# CSC540_LibraryManagment
+CSC540_LibraryManagment
 Project for Database Systems
