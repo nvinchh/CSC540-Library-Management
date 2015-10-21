@@ -95,6 +95,37 @@ CREATE TABLE books
     CONSTRAINT books_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id),
     CONSTRAINT books_courses_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)
     );
+    
+---create tabel journals
+ create table journals
+ (
+    issn      NUMBER(12),
+    title     VARCHAR2(15),
+    author    VARCHAR2(10),
+    p_year    NUMBER(4),
+    quantity  Number(3),
+    j_queue   Number(3),
+    l_id      Number(2),
+    CONSTRAINT journals_pk PRIMARY KEY(issn,l_id),
+    CONSTRAINT journals_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id)
+    );
+
+--conf_proceedings    
+ create table confproceedings
+(
+    conf_num   NUMBER(12),
+    title      VARCHAR2(15),
+    author     VARCHAR2(10),
+    cp_year    NUMBER(4),
+    conf_name  VARCHAR2(7),
+    quantity   Number(3),
+    cp_queue   varchar2(7),
+    l_id       NUMBER(2),
+    CONSTRAINT confp_pk PRIMARY KEY(conf_num,l_id),
+    CONSTRAINT confp_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id)
+);     
+
+drop table confproceedings;
  
 --creating ebooks table
 CREATE TABLE ebooks
@@ -113,7 +144,6 @@ CREATE TABLE ebooks
 CREATE TABLE ejournals
     (
     issn      NUMBER(12),
-    j_id      NUMBER(3),
     title     VARCHAR2(15),
     author    VARCHAR2(10),
     p_year    NUMBER(4),
@@ -133,61 +163,3 @@ create table econfproceedings
     Quantity   Number(3),
     CONSTRAINT econfproceedings_pk PRIMARY KEY(conf_num)
     )
-    
---journals    
-create table journals
- (
-    issn      NUMBER(12),
-    j_id      NUMBER(3),
-    title     VARCHAR2(15),
-    author    VARCHAR2(10),
-    p_year      NUMBER(4),
-    Queue     Number(3) Default 0,
-    type      varchar2(7),
-    l_id      NUMBER(2),
-    CONSTRAINT journals_pk PRIMARY KEY(issn,j_id),
-    CONSTRAINT journals_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id)
-    );
-    
---conference_proceedings
-
-create table confproceedings
-(
-    conf_num   NUMBER(12),
-    cp_id      NUMBER(3),
-    title      VARCHAR2(15),
-    author     VARCHAR2(10),
-    cp_year    NUMBER(4),
-    conf_name  VARCHAR2(7),
-    Queue      Number(3) Default 0,
-    type       varchar2(7),
-    l_id       NUMBER(2),
-    CONSTRAINT confp_pk PRIMARY KEY(conf_num,cp_id),
-    CONSTRAINT confp_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id)
-);   
-
---camera
-CREATE TABLE cameras
-  (
-    cam_id      NUMBER(10),
-    model       VARCHAR(7),
-    make        VARCHAR(7),
-    lens_config NUMBER(4,2),
-    memory      VARCHAR(5),
-    Queue       NUMBER(3),
-    l_id        NUMBER(2),
-    CONSTRAINT cameras_pk PRIMARY KEY(cam_id),
-    CONSTRAINT cameras_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id)
-  );
- 
-CREATE TABLE rooms
-  (
-    r_id     NUMBER(10),
-    type     VARCHAR2(10),
-    capacity NUMBER(3),
-    floor    NUMBER(2),
-    status   Char(1),
-    l_id     NUMBER(2),
-    CONSTRAINT rooms_pk PRIMARY KEY(r_id,l_id),
-    CONSTRAINT rooms_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id)
-  );
