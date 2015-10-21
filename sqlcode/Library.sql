@@ -82,20 +82,58 @@ CREATE TABLE library
 CREATE TABLE books
   (
     isbn      NUMBER(12),
-    b_id      NUMBER(3),
     title     VARCHAR2(15),
-    author    VARCHAR2(10),
+    author    VARCHAR2(40),
     b_edition   NUMBER(5),
     p_year      NUMBER(4),
-    Publisher VARCHAR2(10),
-    Queue     Number(3) Default 0,
+    Publisher  VARCHAR2(10),
+    b_Quantity  Number(3),
+    b_Queue     Number(3),
     l_id      NUMBER(2),
     c_id      NUMBER(5), 
-    CONSTRAINT books_pk PRIMARY KEY(isbn,b_id),
+    CONSTRAINT books_pk PRIMARY KEY(isbn,l_id),
     CONSTRAINT books_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id),
     CONSTRAINT books_courses_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)
     );
  
+--creating ebooks table
+CREATE TABLE ebooks
+  (
+    isbn      NUMBER(12),
+    title     VARCHAR2(15),
+    author    VARCHAR2(10),
+    eb_edition   NUMBER(5),
+    p_year      NUMBER(4),
+    Publisher VARCHAR2(10),
+    Quantity     Number(3),
+    CONSTRAINT ebooks_pk PRIMARY KEY(isbn)
+  )
+
+--creating e-journals
+CREATE TABLE ejournals
+    (
+    issn      NUMBER(12),
+    j_id      NUMBER(3),
+    title     VARCHAR2(15),
+    author    VARCHAR2(10),
+    p_year    NUMBER(4),
+    Quantity  Number(3),
+    CONSTRAINT ejournals_pk PRIMARY KEY(issn)
+    )
+ 
+--creating econf_proceedings    
+
+create table econfproceedings
+   (
+    conf_num   NUMBER(12),
+    title      VARCHAR2(15),
+    author     VARCHAR2(10),
+    cp_year    NUMBER(4),
+    conf_name  VARCHAR2(7),
+    Quantity   Number(3),
+    CONSTRAINT econfproceedings_pk PRIMARY KEY(conf_num)
+    )
+    
 --journals    
 create table journals
  (
