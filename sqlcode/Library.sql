@@ -1,3 +1,4 @@
+
 --Department Table
 CREATE TABLE departments
   (
@@ -5,6 +6,7 @@ CREATE TABLE departments
     dept_name VARCHAR2(10),
     CONSTRAINT dept_code_pk PRIMARY KEY(dept_code)
   );
+  
 --Student Table
 CREATE TABLE students
   (
@@ -27,6 +29,7 @@ CREATE TABLE students
     CONSTRAINT s_id_pk PRIMARY KEY(s_id),
     CONSTRAINT departments_fk FOREIGN KEY (dept_code) REFERENCES departments(dept_code)
   );
+  
 --Faculty
 CREATE TABLE faculty
   (
@@ -41,6 +44,7 @@ CREATE TABLE faculty
     CONSTRAINT f_id_pk PRIMARY KEY(f_id),
     CONSTRAINT departments_faculty_fk FOREIGN KEY (dept_code) REFERENCES departments(dept_code)
   );
+  
 --Courses
 CREATE TABLE courses
   (
@@ -95,8 +99,10 @@ CREATE TABLE books
     CONSTRAINT books_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id),
     CONSTRAINT books_courses_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)
     );
+--ALTER TABLE books add r_id NUMBER(5);   
     
 ---create tabel journals
+ 
  create table journals
  (
     issn      NUMBER(12),
@@ -111,7 +117,7 @@ CREATE TABLE books
     );
 
 --conf_proceedings    
- create table confproceedings
+create table confproceedings
 (
     conf_num   NUMBER(12),
     title      VARCHAR2(15),
@@ -163,3 +169,56 @@ create table econfproceedings
     Quantity   Number(3),
     CONSTRAINT econfproceedings_pk PRIMARY KEY(conf_num)
     )
+ 
+--creating table patrons 
+create table patrons
+   (
+   p_id NUMBER(1),
+   firstName VARCHAR2(15),
+   lastName VARCHAR2(15),
+   type CHAR(1),
+   CONSTRAINT patrons_pk PRIMARY KEY(p_id)
+   );
+
+--books checkout
+
+create table books_checkout
+ (
+  resource_id Number(12),
+  checkoutdate TIMESTAMP ,
+  duedate TIMESTAMP,
+  p_id NUMBER(10),
+  l_id NUMBER(2),
+  CONSTRAINT bcheckout_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
+  CONSTRAINT bcheckout_books_fk FOREIGN KEY (resource_id,l_id) REFERENCES books(isbn,l_id),
+  CONSTRAINT bcheckout_patrons_fk FOREIGN KEY (p_id) references patrons
+  );
+  
+--checkout journals
+create table journals_checkout
+ (
+  resource_id Number(12),
+  checkoutdate TIMESTAMP ,
+  duedate TIMESTAMP,
+  p_id NUMBER(10),
+  l_id NUMBER(2),
+  CONSTRAINT journals_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
+  CONSTRAINT jcheckout_journals_fk FOREIGN KEY (resource_id,l_id) REFERENCES journals(issn,l_id),
+  CONSTRAINT jcheckout_patrons_fk FOREIGN KEY (p_id) references patrons
+  );
+
+  
+create table confp_checkout
+(
+  resource_id Number(12),
+  checkoutdate TIMESTAMP ,
+  duedate TIMESTAMP,
+  p_id NUMBER(10),
+  l_id NUMBER(2),
+  CONSTRAINT cpcheckout_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
+  CONSTRAINT cp_checkout_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),
+  CONSTRAINT cp_patrons_fk FOREIGN KEY (p_id) references patrons
+  );
+
+ 
+   
