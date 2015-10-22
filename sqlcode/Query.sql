@@ -1,9 +1,3 @@
---log
-alter table ebooks drop constraint ebooks_lib_fk;
-
-drop table ebooks;
-
-alter table books add type varchar(7);
 
 --Entities
 select * from students;

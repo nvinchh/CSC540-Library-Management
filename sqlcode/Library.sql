@@ -101,7 +101,7 @@ CREATE TABLE books
     );
 --ALTER TABLE books add r_id NUMBER(5);   
     
----create tabel journals
+---create table journals
  
  create table journals
  (
