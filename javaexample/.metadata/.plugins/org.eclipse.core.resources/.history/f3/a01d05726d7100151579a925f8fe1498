@@ -1,0 +1,24 @@
+import java.sql.*;
+
+public class TestConnection {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try
+		{
+			Class.forName("oracle.jdbc.drver.OracleDriver");
+           Connection conn=DriverManager.getConnection("jdbc:oracle:thin:localhost:1521:xe","sys","oracle");
+           Statement st=conn.createStatement();
+           String query="select * from test_departments";
+           ResultSet rst=st.executeQuery(query);
+           while(rst.next())
+           System.out.println(rst.getInt(1)+""+rst.getString(2));
+        conn.close();
+           
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}

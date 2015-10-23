@@ -1,0 +1,26 @@
+
+public class Change {
+
+	int d[]={ 50, 25, 10, 5, 1 };
+	int i=0;
+	System.out.println("Enter the value to be changed");
+	syso
+	
+	InputStreamReader isr = new InputStreamReader(System.in);
+	BufferedReader stdin= new BufferedReader(isr);
+
+	int value=Integer.parseInt(stdin.readLine());
+	
+	void Change(int d[i],int value) {
+		while(Math.floor(value/d[i])>1)
+		{
+			System.out.println(d[i]);
+			value=value-d[i];
+		}
+		
+		if(value==0)
+			return;
+		else
+			Change(d[i+1],value);
+	}
+}

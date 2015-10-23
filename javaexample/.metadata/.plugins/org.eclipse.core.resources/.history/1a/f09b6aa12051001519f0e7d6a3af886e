@@ -1,0 +1,36 @@
+import java.io.* ;
+
+class PowerFunction1{
+ 	
+	int raised(int x,int n)
+	{
+		int temp=1;
+		if (n==0)
+			return 1;
+		temp=raised(x,n/2);
+       if (n%2==0)
+    	   return(temp*temp);
+    	   else return (x*temp*temp);
+	}
+
+}
+
+class PowerFunction{
+	public static void main(String args[])throws IOException
+	{
+	InputStreamReader isr = new InputStreamReader(System.in);
+	BufferedReader stdin= new BufferedReader(isr);
+	System.out.println("Enter the values of x\n");
+	
+	int x=Integer.parseInt(stdin.readLine());
+	
+	System.out.println(x);
+	
+	System.out.println("Enter the values of n\n");
+	int n=Integer.parseInt(stdin.readLine());
+	
+	PowerFunction1 p=new PowerFunction1();
+	p.raised(x,n);
+
+	}
+}

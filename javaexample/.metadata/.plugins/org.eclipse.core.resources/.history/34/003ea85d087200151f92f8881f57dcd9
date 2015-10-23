@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+	public static void main(String[] args)throws IOException {
+		/* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader stdin= new BufferedReader(isr);
+
+		int T=Integer.parseInt(stdin.readLine());
+		int N[]=new int[T+1];
+		int K[]=new int[T+1];
+		int ans[]=new int[T+1];
+		N[0]=1;
+		K[0]=1;
+		ans[0]=0;
+		for(int i=1;i<=T;i++)
+		{
+			
+			N[i]=Integer.parseInt(stdin.readLine());
+			K[i]=Integer.parseInt(stdin.readLine());
+		}
+		for (int i=1;i<N.length;i++)
+		{
+			int q=0;
+		for(int j=1;j<=N[i];j++)
+			{	
+				int p=j;
+				int z=0;
+				while(p+K[i]<=N[i])
+				{
+					z=z+1;
+					p=p+K[i];	
+				}
+              q=q+z;
+			}
+		ans[i]=q;
+		}
+
+			for (int i=1;i<=T;i++)
+				System.out.println(ans[i]+"\n");
+		}
+	}

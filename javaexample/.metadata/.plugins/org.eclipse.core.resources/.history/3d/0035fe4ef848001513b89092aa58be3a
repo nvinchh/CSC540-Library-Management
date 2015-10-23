@@ -1,0 +1,19 @@
+
+abstract class TestAbstraction {
+abstract void hastobeImplemented();
+}
+
+class Implementation extends TestAbstraction1{
+	void hastobeImplemented()
+	{
+		System.out.println("Implementation Successful");
+	}
+}
+
+class TestAbstraction1 {
+	public static void main (String args[])
+	{
+	TestAbstraction1 obj=new Implementation();
+	obj.hastobeImplemented();
+	}
+}

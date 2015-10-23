@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args)throws IOException {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+    	InputStreamReader isr = new InputStreamReader(System.in);
+    	BufferedReader stdin= new BufferedReader(isr);
+    	
+    	System.out.println("Enter the test cases");
+    	int T=Integer.parseInt(stdin.readLine());
+    	int N[]=new int[T+1];
+    	int K[]=new int[T+1];
+    	int ans[]=new int[T+1];
+    	N[0]=1;
+    	K[0]=1;
+    	ans[0]=0;
+    	for(int i=1;i<=T;i++)
+    	{
+    	System.out.println("Enter the value on N");
+    	N[i]=Integer.parseInt(stdin.readLine());;
+    	System.out.println("Enter the value of K");
+    	K[i]=Integer.parseInt(stdin.readLine());
+    	}
+    
+    	for(int i=1;i<=N[i];i++)
+    	{	
+    		int p=i;
+    		int z=0;
+    		while(p+K[i]<=N[i])
+    		{
+    			z=z+1;
+    			p=p+K[i];	
+    		}
+    		ans[i]=z;
+    	}
+    	for (int i=1;i<=T;i++)
+    		System.out.println(ans[i]+"\n");
+    }
+}

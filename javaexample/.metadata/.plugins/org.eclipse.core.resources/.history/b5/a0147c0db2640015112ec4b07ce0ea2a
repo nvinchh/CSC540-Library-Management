@@ -1,0 +1,40 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Change {
+
+	
+
+	private static void main(String[] args) throws NumberFormatException, IOException {
+
+		System.out.println("Enter the value to be changed");
+		
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader stdin= new BufferedReader(isr);
+
+		
+		int d[] = { 50, 25, 10, 5, 1 };
+		int i = 0;
+		
+		int value=Integer.parseInt(stdin.readLine());
+		Change(d[i],value);
+		
+		}
+
+	    void Change(int d,int value) {
+		while(Math.floor(value/d[i])>1)
+		{
+			System.out.println(d);
+			value=value-d;
+		}
+		
+		if(value==0)
+			return;
+		else
+			x=d[i+1];
+			Change(,value);
+	}
+
+	
+}

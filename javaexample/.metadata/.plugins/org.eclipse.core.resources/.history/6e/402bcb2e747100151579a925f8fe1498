@@ -1,0 +1,65 @@
+import java.sql.*;
+import java.io.*;
+public class TestConnection {
+
+	public static void connect()
+	// TODO Auto-generated method stub
+	{	
+		try
+		{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}
+
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+
+	public static void insertValues(int dept_code,String name)
+	{
+		connect();	
+		Connection conn;
+		try {
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","sys as SYSDBA","oracle");
+			PreparedStatement st=(PreparedStatement)conn.prepareStatement("insert into test_departments(?,?)VALUES(?,?)");
+			st.setInt(1,dept_code);
+			st.setString(2,name);
+			displayValues();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void displayValues()
+	{
+		connect();	
+		Connection conn1;	
+		try{
+			conn1 = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","sys as SYSDBA","oracle");
+			String query="select * from test_departments";
+			Statement st=conn1.createStatement();
+			ResultSet rst=st.executeQuery(query);
+			while(rst.next())
+				System.out.println(rst.getInt(1)+""+rst.getString(2));
+			conn1.close();
+		}
+		catch(SQLException e){
+			System.out.println(e);	
+		}
+	}
+
+	public static void main(String args[])throws IOException
+	{
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader stdin= new BufferedReader(isr);
+		System.out.println("Enter the id");
+		int x=Integer.parseInt(stdin.readLine()+"\n");
+		System.out.println("Enter the departmnet name");
+		String department=stdin.readLine();
+		insertValues(x,department);
+	}
+}
+
+

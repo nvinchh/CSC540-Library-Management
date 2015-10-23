@@ -1,0 +1,20 @@
+
+public class Wind {
+	
+	double windspeedb;
+	double windspeedk;
+	public double getWindspeedb() {
+		return windspeedb;
+	}
+	public void setWindspeedb(double windspeedb) {
+		this.windspeedb = windspeedb;
+	}
+	public double getWindspeedk() {
+		return windspeedk;
+	}
+	public void setWindspeedk(double windspeedk) {
+		this.windspeedk = windspeedk;
+	}
+
+	Wind()
+}

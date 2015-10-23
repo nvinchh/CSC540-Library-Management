@@ -1,0 +1,34 @@
+import java.io.* ;
+
+class PowerFunction1{
+ 	
+	
+	
+	int power(int x,int n)
+	{
+		int temp=1;
+		if (n==0)
+			return 1;
+		temp=power(x,n/2);
+       if (n%2==0)
+    	   return(temp*temp);
+    	   else return (x*temp*temp);
+	}
+
+}
+
+public class PowerFunction{
+	public static void main(String args[])throws IOException
+	{
+	InputStreamReader isr = new InputStreamReader(System.in);
+	BufferedReader stdin= new BufferedReader(isr);
+	System.out.println("Enter the values of x and n");
+	
+	int x=Integer.parseInt(stdin.readLine());
+	int n=Integer.parseInt(stdin.readLine());
+	
+	PowerFunction1 p=new PowerFunction1();
+	p.power(x,n);
+
+	}
+}

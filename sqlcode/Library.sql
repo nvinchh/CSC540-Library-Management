@@ -48,7 +48,7 @@ CREATE TABLE faculty
 --Courses
 CREATE TABLE courses
   (
-    c_id      NUMBER(5),
+    c_id      VARCHAR2(20),
     c_name    VARCHAR2(10),
     term      VARCHAR2(10),
     dept_code NUMBER(5),
@@ -59,7 +59,7 @@ CREATE TABLE courses
 CREATE TABLE enrols
   (
     s_id NUMBER(5),
-    c_id NUMBER(5),
+    c_id VARCHAR2(20),
     CONSTRAINT enrollss_pk PRIMARY KEY(s_id,c_id),
     CONSTRAINT students_fk FOREIGN KEY (s_id) REFERENCES students(s_id),
     CONSTRAINT courses_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)
@@ -68,7 +68,7 @@ CREATE TABLE enrols
 CREATE TABLE teaches
   (
     f_id NUMBER(5),
-    c_id NUMBER(5),
+    c_id VARCHAR2(20),
     CONSTRAINT teaches_pk PRIMARY KEY(f_id,c_id),
     CONSTRAINT faculty_fk FOREIGN KEY (f_id) REFERENCES faculty(f_id),
     CONSTRAINT courses1_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)
@@ -94,7 +94,7 @@ CREATE TABLE books
     b_Quantity  Number(3),
     b_Queue     Number(3),
     l_id      NUMBER(2),
-    c_id      NUMBER(5), 
+    c_id      VARCHAR2(20), 
     CONSTRAINT books_pk PRIMARY KEY(isbn,l_id),
     CONSTRAINT books_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id),
     CONSTRAINT books_courses_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)

@@ -1,0 +1,54 @@
+
+public class DynamicMatrix {
+	static int multcount=0;
+	static int m[][];
+	static int s[][];
+	public static void main(String args[])
+	{
+		int p[]={10, 20, 30, 40, 30};
+		m = new int[p.length-1][p.length-1];
+		s = new int[p.length-1][p.length-1];
+		long t1=System.nanoTime();
+		chainmatrix(p,m,s);
+		long t2=System.nanoTime();
+		System.out.println("Running Time"+(t2-t1));
+		System.out.println("\nNumber of Optimal multiplications: "+m[0][p.length-2]);
+		System.out.println("Paranthesized output");
+		parenthesize(s,0,p.length-2);
+	}
+	static void chainmatrix(int p[],int m[][],int s[][])
+	{
+		int n=p.length-1;
+		for (int i=0;i<n;i++)
+			m[i][i]=0;
+		int j,q=0;
+		for (int l=2;l<=n;l++)
+		{
+			for(int i=1;i<n-l+1;i++)
+			{
+				j=i+l-1;
+				m[i][j]=Integer.MAX_VALUE;
+				for (int k=i;k<=j-1;k++)
+				{
+					q=m[i][k]+m[k+1][j]+p[i]*p[k+1]*p[j+1];
+					multcount+=2;
+					if(q < m[i][j])
+					{
+						m[i][j]=q;
+						s[i][j]=k;
+					}
+				}
+			}
+		}
+	}
+	public static void parenthesize(int s[][], int i,int j){
+		if(i==j){
+			System.out.print("A"+(i+1));
+		}else{
+			System.out.print("(");
+			parenthesize(s, i, s[i][j]);
+			parenthesize(s, s[i][j] + 1, j);
+			System.out.print(")");
+		}
+	}
+}

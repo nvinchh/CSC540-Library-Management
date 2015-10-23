@@ -1,0 +1,61 @@
+package dbproject;
+
+import java.sql.*;
+import java.io.*;
+import java.util.*;
+
+public class StudentDAO {
+	private Connection conn;
+
+	public StudentDAO() throws Exception {
+		System.out.println(new java.io.File("").getAbsolutePath());
+		Properties prop = new Properties();
+		prop.load(new FileInputStream("C:/Users/Vaibhav/workspace/Oracle/Sql/dbinfo.properties"));
+
+		String dburl = prop.getProperty("dburl");
+		String user = prop.getProperty("user");
+		String password = prop.getProperty("password");
+
+		conn = DriverManager.getConnection(dburl,user,password);
+
+		System.out.println("Connection Established");
+
+	}
+
+	public List<Department> getAllStudents()throws Exception
+	{
+		List<Department> list = new ArrayList();
+		
+		Statement myStmnt=null;
+		ResultSet rst=null;
+		
+		try
+		{
+			myStmnt=conn.createStatement();
+			rst=myStmnt.executeQuery("select * from departments");
+			
+			while(rst.next())
+			{
+				Department tempDepartment=convertRowToDepartment(rst);
+				list.add(tempDepartment);
+			}
+			return list;
+		}
+			finally
+			{
+				conn.close();
+			}
+		}
+	
+
+	private Department convertRowToDepartment(ResultSet rst) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static void main(String args[])throws Exception
+	{
+		StudentDAO st=new StudentDAO();
+		System.out.println(st.getAllStudents());
+	}
+}

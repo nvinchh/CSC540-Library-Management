@@ -1,0 +1,40 @@
+
+public class LCS {
+	public static void main(String args[])
+	{
+		int x[]={1,13,5,7,2,8,4,6};
+		int y=longestCommonSubsequence(x);
+		System.out.println("The length of longest common subsequence is"+ y);
+	}
+
+
+
+	static int longestCommonSubsequence(int y[])
+	{
+		int p[]=new int[y.length];
+		int max;
+		for (int q=0;q<y.length;q++)
+		{
+			p[q]=1;
+		}
+
+		for (int i=1;i<y.length;i++)
+			for(int j=0;j<i;j++)
+			{
+				if(y[j]<y[i] && p[i]>=p[j])
+					p[i]=p[j]+1;
+			}
+
+		max=p[0];
+		for (int i=1;i<p.length;i++)
+		{
+			if(p[i]>p[i-1])
+				max=p[i];
+		}
+		for (int a=0;a<p.length;a++)
+		System.out.println(p[a]+"\n");
+		return max;
+	}
+}
+
+

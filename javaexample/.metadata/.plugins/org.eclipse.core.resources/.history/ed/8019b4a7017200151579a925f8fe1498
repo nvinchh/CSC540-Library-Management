@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Blocks{
+
+	public static void main(String[] args)throws IOException {
+		/* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader stdin= new BufferedReader(isr);
+
+		System.out.println("Enter the value of N");
+		int N=Integer.parseInt(stdin.readLine());
+
+		int x=0;
+		for(int i=2;i<=N/2;i++)
+		{
+			while(N>1)
+			{
+				x=x+1;
+				N=N-i;
+			}
+			x=x+1;
+			System.out.println(x);
+		}
+	}
+}

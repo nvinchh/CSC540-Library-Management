@@ -1,0 +1,63 @@
+
+class City{
+
+	boolean isCapitalCity;
+	int numberOfCitizen;
+	double taxPerCitizen;
+	String name;
+
+	public boolean isCapitalCity() {
+		return isCapitalCity;
+	}
+
+	public void setCapitalCity(boolean isCapitalCity) {
+		this.isCapitalCity = isCapitalCity;
+	}
+
+	public int getNumberOfCitizen() {
+		return numberOfCitizen;
+	}
+
+	public void setNumberOfCitizen(int numberOfCitizen) {
+		this.numberOfCitizen = numberOfCitizen;
+	}
+
+	public double getTaxPerCitizen() {
+		return taxPerCitizen;
+	}
+
+	public void setTaxPerCitizen(double taxPerCitizen) {
+		this.taxPerCitizen = taxPerCitizen;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void isMetropolis() {
+
+		if(isCapitalCity==true && getNumberOfCitizen()>100000)
+			System.out.println("The city" + "\t" + getName()+ "\t" + "is a Metropolis");
+		else
+			System.out.println("The city" + getName() + "is not a Metropolis");  
+	}
+		
+	}
+
+
+public class CityMain{
+	public static void main(String args[]) {
+		City c = new City();
+		c.setCapitalCity(true);
+		c.setNumberOfCitizen(500000);
+		c.setName("Raleigh");
+		c.setTaxPerCitizen(20000);
+		
+		c.isMetropolis();
+	}
+
+}

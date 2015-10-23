@@ -1,0 +1,11 @@
+import java.util.*
+public class PowerFunction {
+public static void main(String args[])
+{
+	InputStreamReader 
+	int power(int x,int n)
+	{
+
+	}
+}
+}

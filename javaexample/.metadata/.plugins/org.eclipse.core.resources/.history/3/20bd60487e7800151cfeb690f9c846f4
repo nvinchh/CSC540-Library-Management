@@ -1,0 +1,30 @@
+package dbproject;
+
+import java.sql.*;
+import java.io.*;
+import java.util.*;
+
+public class StudentDAO {
+	private Connection conn;
+
+	public StudentDAO() throws Exception {
+		Properties prop = new Properties();
+		prop.load(new FileInputStream("dbinfo.properties"));
+
+		String dburl = prop.getProperty("dburl");
+		String user = prop.getProperty("user");
+		String password = prop.getProperty("password");
+
+		conn = DriverManager.getConnection("dburl", "usr", "password");
+
+		System.out.println("Connection Established");
+
+	}
+	
+	public List<Students> getAllStudents throws Exception()
+	{
+		List<Students> list = new ArrayList();
+		
+	}
+
+}
