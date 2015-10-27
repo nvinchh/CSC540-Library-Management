@@ -9,3 +9,12 @@ insert into books values(200108613,'IntrotoAlgos','Cormen',4,2005,'CareerMonk',5
 insert into students values(27101991,'Vaibhav','Rajadhyaksha','M',TO_DATE('10/27/1991','MM/DD/YYYY'),'Indian',9193232234,NULL,'Rale','Avent',27606,'MS','Grad','FM',0.00,1,'rajadhva',0);
 insert into patrons values(27101991,'Vaibhav','Rajadhyaksha','S');
 insert into books_checkout values(200108613,LOCALTIMESTAMP,LOCALTIMESTAMP+14,27101991,2);
+insert into faculty values(505,'Stefen','Heber','M','Germany','Grad',0.00,1,'algorithms',0);
+insert into faculty values(540,'Kemafor','Ogan','F','African','Grad',0.00,1,'dbms',0);
+select * from faculty;
+
+select * from faculty where f_id=505 and pswd='algorithms';
+select * from students;
+
+delete from faculty
+where (pswd='algorithms');

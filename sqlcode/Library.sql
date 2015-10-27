@@ -130,8 +130,6 @@ create table confproceedings
     CONSTRAINT confp_pk PRIMARY KEY(conf_num,l_id),
     CONSTRAINT confp_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id)
 );     
-
-drop table confproceedings;
  
 --creating ebooks table
 CREATE TABLE ebooks

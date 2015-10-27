@@ -1,0 +1,107 @@
+
+-- adding necessary fields
+alter table students
+add (pswd varchar2(15),
+     onhold  number(1)
+     );
+
+-- adding necessary fields     
+alter table faculty
+add (pswd varchar2(15),
+     onhold  number(1)
+     );
+     
+-- adding r_id constraint to books
+ALTER TABLE books 
+add r_id NUMBER(5);
+
+
+ALTER TABLE BOOKS
+add CONSTRAINT books_reserved_fk FOREIGN KEY(r_id) REFERENCES reserved(r_id);
+
+---10/22 Changes
+
+alter table departments
+modify dept_name VARCHAR2(25);
+
+--students
+alter table students
+modify first_name VARCHAR2(15) NOt NULL; 
+
+alter table students
+modify nationality VARCHAR2(20);
+
+alter table students
+modify city VARCHAR2(20);
+
+alter table students
+modify street VARCHAR2(20);
+
+alter table students
+modify classification VARCHAR2(20);
+
+alter table students
+modify s_category VARCHAR2(15);
+
+
+--faculty
+
+alter table faculty
+modify first_name VARCHAR2(15);
+
+alter table faculty
+modify nationality VARCHAR2(20);
+
+alter table faculty
+modify f_category VARCHAR2(20);
+
+
+--courses
+alter table courses
+modify c_name VARCHAR2(30);
+
+
+--books
+alter table books
+modify title VARCHAR2(30);
+
+alter table books
+modify publisher VARCHAR2(20);
+
+--journals
+
+alter table journals
+modify author VARCHAR2(30);
+
+--confproceedings
+alter table confproceedings
+modify author VARCHAR2(30);
+
+alter table confproceedings
+modify conf_name VARCHAR2(30);
+
+alter table confproceedings
+modify cp_queue number(3);
+
+--ebooks
+
+-ejournals
+
+alter table ejournals
+modify author VARCHAR2(30);
+
+alter table ejournals
+modify title VARCHAR2(30);
+
+--econfproceedings
+
+alter table econfproceedings
+modify author VARCHAR2(30);
+
+alter table econfproceedings
+modify title VARCHAR2(30);
+
+alter table econfproceedings
+modify conf_name VARCHAR2(30);
+
+
