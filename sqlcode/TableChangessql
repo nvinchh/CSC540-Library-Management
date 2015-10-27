@@ -105,3 +105,6 @@ alter table econfproceedings
 modify conf_name VARCHAR2(30);
 
 
+--patrons
+alter table patrons
+modify p_id Number(30);
