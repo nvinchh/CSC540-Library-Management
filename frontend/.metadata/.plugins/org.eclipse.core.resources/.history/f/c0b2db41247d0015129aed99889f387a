@@ -43,19 +43,15 @@ public class StudentHome extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnProfile = new JButton("Profile");
-		btnProfile.setBounds(33, 16, 115, 29);
+		btnProfile.setBounds(15, 16, 115, 29);
 		contentPane.add(btnProfile);
 		
 		JButton btnResources = new JButton("Resources");
-		btnResources.setBounds(33, 72, 115, 29);
+		btnResources.setBounds(15, 72, 115, 29);
 		contentPane.add(btnResources);
 		
 		JButton btnCheckedoutresources = new JButton("<html>Checked-Out-Resources</html>");
-		btnCheckedoutresources.setBounds(206, 72, 189, 29);
+		btnCheckedoutresources.setBounds(15, 127, 115, 29);
 		contentPane.add(btnCheckedoutresources);
-		
-		JButton btnResourcerequest = new JButton("<html>Resource-Request</html>");
-		btnResourcerequest.setBounds(33, 129, 115, 29);
-		contentPane.add(btnResourcerequest);
 	}
 }
