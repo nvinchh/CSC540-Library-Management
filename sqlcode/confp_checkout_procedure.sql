@@ -1,5 +1,5 @@
  -- Procedure to checkout journals
-CREATE OR REPLACE PROCEDURE ConfCheckout (cISSN NUMBER,cLid NUMBER,patronId NUMBER)
+CREATE OR REPLACE PROCEDURE ConfCheckout (cISSN VARCHAR2,cLid NUMBER,patronId VARCGAR2)
 IS
      varType CHAR;
      qty NUMBER;

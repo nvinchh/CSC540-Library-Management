@@ -1,5 +1,5 @@
 -- Procedure to checkout journals
-CREATE OR REPLACE PROCEDURE JCheckout (jISSN NUMBER,jLid NUMBER,patronId NUMBER)
+CREATE OR REPLACE PROCEDURE JCheckout (jISSN VARCHAR2,jLid NUMBER,patronId VARCHAR2)
 IS
      varType CHAR;
      qty NUMBER;

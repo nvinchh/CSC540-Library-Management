@@ -1,4 +1,4 @@
- create or replace function alreayIssuedJournal(patron_Id in NUMBER, jISSN in VARCHAR,jLid in NUMBER)
+ create or replace function alreayIssuedJournal(patron_Id in VARCHAR2, jISSN in VARCHAR2,jLid in NUMBER)
 return BOOLEAN
 is
   pId NUMBER;

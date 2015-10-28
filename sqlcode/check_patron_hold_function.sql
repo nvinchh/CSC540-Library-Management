@@ -1,4 +1,4 @@
- create or replace function checkHold (patron_Id in NUMBER, var_Type in CHAR)
+ create or replace function checkHold (patron_Id in VARCHAR2, var_Type in CHAR)
 return BOOLEAN
 is
   on_Hold NUMBER;
