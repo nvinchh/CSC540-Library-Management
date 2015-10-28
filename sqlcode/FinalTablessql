@@ -1,0 +1,57 @@
+drop table enrols;
+
+delete from students;
+
+alter table students
+Modify s_id VARCHAR2(20);
+
+--run query for create enrols
+
+drop table teaches;
+
+delete from faculty;
+
+alter table faculty
+Modify f_id VARCHAR2(20);
+
+--create table teaches again
+
+alter table ebooks
+modify isbn VARCHAR2(20)
+
+alter table econfproceedings
+modify conf_num VARCHAR2(20);
+
+alter table ejournals
+modify issn VARCHAR2(20);
+
+
+drop table journals_checkout;
+
+alter table journals
+modify issn VARCHAR2(20);
+
+--create table journals_checkout
+drop table confp_checkout;
+
+alter table confproceedings
+modify conf_num VARCHAR2(20);
+
+--create confp_checkout again;
+drop table books_checkout;
+
+delete from books;
+
+alter table books
+modify isbn VARCHAR2(20);
+
+select * from books;
+
+---create table books_checkout
+ 
+ drop table confp_checkout;
+ drop table books_checkout;
+ drop table journals_checkout;
+ drop table patrons;
+ drop table books;
+ 
