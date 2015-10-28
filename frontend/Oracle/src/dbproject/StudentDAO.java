@@ -1,0 +1,101 @@
+package dbproject;
+
+import java.sql.*;
+import java.io.*;
+import java.util.*;
+
+public class StudentDAO {
+	private Connection conn;
+
+	public StudentDAO() throws Exception {
+		System.out.println(new java.io.File("").getAbsolutePath());
+		
+		//load database details 
+		Properties prop = new Properties();
+		prop.load(new FileInputStream("C:/Users/Vaibhav/workspace/Oracle/Sql/dbinfo.properties"));
+
+		String dburl = prop.getProperty("dburl");
+		String user = prop.getProperty("user");
+		String password = prop.getProperty("password");
+
+		conn = DriverManager.getConnection(dburl, user, password);
+
+		System.out.println("Connection Established");
+
+	}
+
+	public List<Department> getAllDepartments() throws Exception {
+		List<Department> list = new ArrayList();
+
+		Statement myStmnt = null;
+		ResultSet rst = null;
+
+		try {
+			myStmnt = conn.createStatement();
+			rst = myStmnt.executeQuery("select * from departments");
+
+			while (rst.next()) {
+				Department tempDepartment = convertRowToDepartment(rst); //helper method
+				list.add(tempDepartment);
+			}
+			return list;
+		} finally {
+			close(myStmnt, rst);
+		}
+	}
+
+	public List<Department> searchallDepartments(String dept_name) throws Exception {
+		List<Department> list = new ArrayList();
+
+		PreparedStatement myStmnt = null;
+		ResultSet rst = null;
+
+		try {
+			dept_name += "%";
+			myStmnt = conn.prepareStatement("select * from departments where dept_name like ?");
+
+			myStmnt.setString(1, dept_name);
+			rst = myStmnt.executeQuery();
+
+			while (rst.next()) {
+				Department tempDepartment = convertRowToDepartment(rst);
+				list.add(tempDepartment);
+			}
+			return list;
+		} finally {
+			close(myStmnt, rst);
+		}
+	}
+
+	private Department convertRowToDepartment(ResultSet myRs) throws SQLException {
+
+		int dept_code = myRs.getInt("dept_code");
+		String dept_name = myRs.getString("dept_name");
+		Department tempDepartment = new Department(dept_code, dept_name);
+		return tempDepartment;
+	}
+
+	private static void close(Connection myConn, Statement myStmt, ResultSet myRs) throws SQLException {
+
+		if (myRs != null) {
+			myRs.close();
+		}
+
+		if (myStmt != null) {
+
+		}
+
+		if (myConn != null) {
+			myConn.close();
+		}
+	}
+
+	private void close(Statement myStmt, ResultSet myRs) throws SQLException {
+		close(null, myStmt, myRs);
+	}
+
+	public static void main(String args[]) throws Exception {
+		StudentDAO st = new StudentDAO();
+		System.out.println(st.getAllDepartments());
+	}
+}
