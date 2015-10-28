@@ -18,10 +18,8 @@ BEGIN
                if(qty>0) then
                   insert into JOURNALS_CHECKOUT values(jISSN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronID,jLid);
                   update journals set quantity=(qty-1) where( ISSN=jISSN AND L_ID=jLid);
-               -- else
-                  --if(varType='s') then
-                  
-                  --end if;
+               ELSE
+               queueJournal(patronId, jISSN,jLid, varType);
                end if;
                --need to add into queue if qty<1
        end if;
