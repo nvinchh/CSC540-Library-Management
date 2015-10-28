@@ -10,7 +10,7 @@ CREATE TABLE departments
 --Student Table
 CREATE TABLE students
   (
-    s_id           NUMBER(10),
+    s_id           VARCHAR2(20),
     first_name     VARCHAR2(15) NOT NULL,
     last_name      VARCHAR2(15) NOT NULL,
     sex            VARCHAR2(2),
@@ -33,7 +33,7 @@ CREATE TABLE students
 --Faculty
 CREATE TABLE faculty
   (
-    f_id        NUMBER(10),
+    f_id        VARCHAR2(20),
     first_name  VARCHAR2(15) NOT NULL,
     last_name   VARCHAR2(15) NOT NULL,
     sex         VARCHAR2(2),
@@ -88,7 +88,7 @@ CREATE TABLE books
  
  create table journals
  (
-    issn      NUMBER(12),
+    issn      VARCHAR2(20),
     title     VARCHAR2(15),
     author    VARCHAR2(30),
     p_year    NUMBER(4),
@@ -102,7 +102,7 @@ CREATE TABLE books
 --conf_proceedings    
 create table confproceedings
 (
-    conf_num   NUMBER(12),
+    conf_num   VARCHAR2(20),
     title      VARCHAR2(15),
     author     VARCHAR2(30),
     cp_year    NUMBER(4),
@@ -117,7 +117,7 @@ create table confproceedings
 --creating ebooks table
 CREATE TABLE ebooks
   (
-    isbn      NUMBER(12),
+    isbn      VARCHAR2(20),
     title     VARCHAR2(15),
     author    VARCHAR2(30),
     eb_edition   NUMBER(5),
@@ -130,7 +130,7 @@ CREATE TABLE ebooks
 --creating e-journals
 CREATE TABLE ejournals
     (
-    issn      NUMBER(12),
+    issn      VARCHAR2(20),
     title     VARCHAR2(30),
     author    VARCHAR2(30),
     p_year    NUMBER(4),
@@ -142,7 +142,7 @@ CREATE TABLE ejournals
 
 create table econfproceedings
    (
-    conf_num   NUMBER(12),
+    conf_num   VARCHAR2(20),
     title      VARCHAR2(30),
     author     VARCHAR2(30),
     cp_year    NUMBER(4),
