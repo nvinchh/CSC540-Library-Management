@@ -11,13 +11,7 @@ add (pswd varchar2(15),
      onhold  number(1)
      );
      
--- adding r_id constraint to books
-ALTER TABLE books 
-add r_id NUMBER(5);
 
-
-ALTER TABLE BOOKS
-add CONSTRAINT books_reserved_fk FOREIGN KEY(r_id) REFERENCES reserved(r_id);
 
 ---10/22 Changes
 
@@ -103,8 +97,3 @@ modify title VARCHAR2(30);
 
 alter table econfproceedings
 modify conf_name VARCHAR2(30);
-
-
---patrons
-alter table patrons
-modify p_id Number(30);

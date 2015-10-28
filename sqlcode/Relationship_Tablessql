@@ -1,7 +1,7 @@
 --Enrols
 CREATE TABLE enrols
   (
-    s_id NUMBER(5),
+    s_id VARCHAR2(20),
     c_id VARCHAR2(20),
     CONSTRAINT enrollss_pk PRIMARY KEY(s_id,c_id),
     CONSTRAINT students_fk FOREIGN KEY (s_id) REFERENCES students(s_id),
@@ -11,26 +11,11 @@ CREATE TABLE enrols
 --Teaches
 CREATE TABLE teaches
   (
-    f_id NUMBER(5),
+    f_id VARCHAR2(20),
     c_id VARCHAR2(20),
     CONSTRAINT teaches_pk PRIMARY KEY(f_id,c_id),
     CONSTRAINT faculty_fk FOREIGN KEY (f_id) REFERENCES faculty(f_id),
     CONSTRAINT courses1_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)
   );
   
- select * from reserved; 
---Reserved
-CREATE TABLE reserved
- (
-   r_id Number(3),
-   reserved_date DATE,
-   return_date DATE,
-   ISBN NUMBER(12),
-   f_id NUMBER(5),
-   c_id VARCHAR2(20),
-   CONSTRAINT reserved_pk PRIMARY KEY(r_id),
-   CONSTRAINT reserved_faculty_fk FOREIGN KEY (f_id) REFERENCES faculty(f_id),
-   CONSTRAINT reserved_courses_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)
-   CONSTRAINT reserved_books_fk FOREIGN KEY (isbn) REFERENCES books(isbn)
-   );
     

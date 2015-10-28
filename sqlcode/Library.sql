@@ -3,7 +3,7 @@
 CREATE TABLE departments
   (
     dept_code NUMBER(5),
-    dept_name VARCHAR2(10),
+    dept_name VARCHAR2(25),
     CONSTRAINT dept_code_pk PRIMARY KEY(dept_code)
   );
   
@@ -11,19 +11,19 @@ CREATE TABLE departments
 CREATE TABLE students
   (
     s_id           NUMBER(10),
-    first_name     VARCHAR2(10) NOT NULL,
+    first_name     VARCHAR2(15) NOT NULL,
     last_name      VARCHAR2(15) NOT NULL,
     sex            VARCHAR2(2),
     date_of_birth  DATE,
-    nationality    VARCHAR2(10),
+    nationality    VARCHAR2(20),
     main_phone     NUMBER(10)NOT NULL,
     sec_phone      NUMBER(10),
-    city           VARCHAR2(5),
-    street         VARCHAR(10),
+    city           VARCHAR2(20),
+    street         VARCHAR(20),
     zipcode        VARCHAR(5),
     degree_program VARCHAR(3),
-    classification VARCHAR2(5),
-    s_category     VARCHAR2(2),
+    classification VARCHAR2(20),
+    s_category     VARCHAR2(15),
     s_credit       NUMBER(8,2),
     dept_code      NUMBER(5),
     CONSTRAINT s_id_pk PRIMARY KEY(s_id),
@@ -34,11 +34,11 @@ CREATE TABLE students
 CREATE TABLE faculty
   (
     f_id        NUMBER(10),
-    first_name  VARCHAR2(10) NOT NULL,
+    first_name  VARCHAR2(15) NOT NULL,
     last_name   VARCHAR2(15) NOT NULL,
     sex         VARCHAR2(2),
-    nationality VARCHAR2(10),
-    f_category  VARCHAR2(10),
+    nationality VARCHAR2(20),
+    f_category  VARCHAR2(20),
     f_credit    NUMBER(8,2),
     dept_code   NUMBER(5),
     CONSTRAINT f_id_pk PRIMARY KEY(f_id),
@@ -49,30 +49,13 @@ CREATE TABLE faculty
 CREATE TABLE courses
   (
     c_id      VARCHAR2(20),
-    c_name    VARCHAR2(10),
+    c_name    VARCHAR2(30),
     term      VARCHAR2(10),
     dept_code NUMBER(5),
     CONSTRAINT c_id_pk PRIMARY KEY(c_id),
     CONSTRAINT departments_courses_fk FOREIGN KEY (dept_code) REFERENCES departments(dept_code)
   );
---Enrols
-CREATE TABLE enrols
-  (
-    s_id NUMBER(5),
-    c_id VARCHAR2(20),
-    CONSTRAINT enrollss_pk PRIMARY KEY(s_id,c_id),
-    CONSTRAINT students_fk FOREIGN KEY (s_id) REFERENCES students(s_id),
-    CONSTRAINT courses_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)
-  );
---Teaches
-CREATE TABLE teaches
-  (
-    f_id NUMBER(5),
-    c_id VARCHAR2(20),
-    CONSTRAINT teaches_pk PRIMARY KEY(f_id,c_id),
-    CONSTRAINT faculty_fk FOREIGN KEY (f_id) REFERENCES faculty(f_id),
-    CONSTRAINT courses1_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)
-  );
+
 --Library
 CREATE TABLE library
   (
@@ -85,12 +68,12 @@ CREATE TABLE library
 --Books
 CREATE TABLE books
   (
-    isbn      NUMBER(12),
-    title     VARCHAR2(15),
+    isbn      VARCHAR2(12),
+    title     VARCHAR2(30),
     author    VARCHAR2(40),
     b_edition   NUMBER(5),
     p_year      NUMBER(4),
-    Publisher  VARCHAR2(10),
+    Publisher  VARCHAR2(20),
     b_Quantity  Number(3),
     b_Queue     Number(3),
     l_id      NUMBER(2),
@@ -107,7 +90,7 @@ CREATE TABLE books
  (
     issn      NUMBER(12),
     title     VARCHAR2(15),
-    author    VARCHAR2(10),
+    author    VARCHAR2(30),
     p_year    NUMBER(4),
     quantity  Number(3),
     j_queue   Number(3),
@@ -121,11 +104,11 @@ create table confproceedings
 (
     conf_num   NUMBER(12),
     title      VARCHAR2(15),
-    author     VARCHAR2(10),
+    author     VARCHAR2(30),
     cp_year    NUMBER(4),
-    conf_name  VARCHAR2(7),
+    conf_name  VARCHAR2(30),
     quantity   Number(3),
-    cp_queue   varchar2(7),
+    cp_queue   number(3),
     l_id       NUMBER(2),
     CONSTRAINT confp_pk PRIMARY KEY(conf_num,l_id),
     CONSTRAINT confp_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id)
@@ -136,7 +119,7 @@ CREATE TABLE ebooks
   (
     isbn      NUMBER(12),
     title     VARCHAR2(15),
-    author    VARCHAR2(10),
+    author    VARCHAR2(30),
     eb_edition   NUMBER(5),
     p_year      NUMBER(4),
     Publisher VARCHAR2(10),
@@ -148,8 +131,8 @@ CREATE TABLE ebooks
 CREATE TABLE ejournals
     (
     issn      NUMBER(12),
-    title     VARCHAR2(15),
-    author    VARCHAR2(10),
+    title     VARCHAR2(30),
+    author    VARCHAR2(30),
     p_year    NUMBER(4),
     Quantity  Number(3),
     CONSTRAINT ejournals_pk PRIMARY KEY(issn)
@@ -160,10 +143,10 @@ CREATE TABLE ejournals
 create table econfproceedings
    (
     conf_num   NUMBER(12),
-    title      VARCHAR2(15),
-    author     VARCHAR2(10),
+    title      VARCHAR2(30),
+    author     VARCHAR2(30),
     cp_year    NUMBER(4),
-    conf_name  VARCHAR2(7),
+    conf_name  VARCHAR2(30),
     Quantity   Number(3),
     CONSTRAINT econfproceedings_pk PRIMARY KEY(conf_num)
     )
@@ -171,7 +154,7 @@ create table econfproceedings
 --creating table patrons 
 create table patrons
    (
-   p_id NUMBER(1),
+   p_id VARCHAR2(20),
    firstName VARCHAR2(15),
    lastName VARCHAR2(15),
    type CHAR(1),
@@ -182,10 +165,10 @@ create table patrons
 
 create table books_checkout
  (
-  resource_id Number(12),
+  resource_id VARCHAR2(20),
   checkoutdate TIMESTAMP ,
   duedate TIMESTAMP,
-  p_id NUMBER(10),
+  p_id VARCHAR2(20),
   l_id NUMBER(2),
   CONSTRAINT bcheckout_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
   CONSTRAINT bcheckout_books_fk FOREIGN KEY (resource_id,l_id) REFERENCES books(isbn,l_id),
@@ -195,10 +178,10 @@ create table books_checkout
 --checkout journals
 create table journals_checkout
  (
-  resource_id Number(12),
+  resource_id VARCHAR2(20),
   checkoutdate TIMESTAMP ,
   duedate TIMESTAMP,
-  p_id NUMBER(10),
+  p_id VARCHAR(20),
   l_id NUMBER(2),
   CONSTRAINT journals_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
   CONSTRAINT jcheckout_journals_fk FOREIGN KEY (resource_id,l_id) REFERENCES journals(issn,l_id),
@@ -208,15 +191,15 @@ create table journals_checkout
   
 create table confp_checkout
 (
-  resource_id Number(12),
+  resource_id VARCHAR2(20),
   checkoutdate TIMESTAMP ,
   duedate TIMESTAMP,
-  p_id NUMBER(10),
+  p_id VARCHAR2(20),
   l_id NUMBER(2),
   CONSTRAINT cpcheckout_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
   CONSTRAINT cp_checkout_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),
   CONSTRAINT cp_patrons_fk FOREIGN KEY (p_id) references patrons
   );
 
- 
+
    
