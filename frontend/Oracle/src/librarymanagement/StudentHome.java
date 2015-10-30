@@ -9,10 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class StudentHome extends JFrame {
-
+	public LoginDAO profile;
+	public ProfileDisplay p;
 	private JPanel contentPane;
     
 	/**
@@ -43,6 +47,28 @@ public class StudentHome extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnProfile = new JButton("Profile");
+		btnProfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0){
+				try {
+					StudentLogin pointer = new StudentLogin();
+					String s_id= pointer.studentpointer;
+					profile = new LoginDAO();
+					List<Profile> profileOutput= profile.getProfile(s_id);
+					System.out.println(profileOutput.size());
+					System.out.println(profileOutput.get(0));
+					setVisible(false);
+					ProfileDisplay p=new ProfileDisplay();
+					p.setVisible(true);
+					p.displayData(profileOutput);
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+			}
+		});
 		btnProfile.setBounds(33, 16, 115, 29);
 		contentPane.add(btnProfile);
 		
@@ -51,11 +77,23 @@ public class StudentHome extends JFrame {
 		contentPane.add(btnResources);
 		
 		JButton btnCheckedoutresources = new JButton("<html>Checked-Out-Resources</html>");
-		btnCheckedoutresources.setBounds(206, 72, 189, 29);
+		btnCheckedoutresources.setBounds(224, 72, 189, 29);
 		contentPane.add(btnCheckedoutresources);
 		
 		JButton btnResourcerequest = new JButton("<html>Resource-Request</html>");
-		btnResourcerequest.setBounds(33, 129, 115, 29);
+		btnResourcerequest.setBounds(33, 199, 150, 29);
 		contentPane.add(btnResourcerequest);
+		
+		JButton btnNotifications = new JButton("Notifications");
+		btnNotifications.setBounds(33, 135, 131, 29);
+		contentPane.add(btnNotifications);
+		
+		JButton btnDueBalance = new JButton("Due Balance");
+		btnDueBalance.setBounds(256, 135, 131, 29);
+		contentPane.add(btnDueBalance);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setBounds(313, 215, 115, 29);
+		contentPane.add(btnLogout);
 	}
 }

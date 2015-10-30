@@ -1,0 +1,98 @@
+package librarymanagement;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.event.ActionEvent;
+
+public class StudentHome extends JFrame {
+	public LoginDAO profile;
+	List<ProfileDisplay> profileDisplay;
+	private JPanel contentPane;
+    
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					StudentHome frame = new StudentHome();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public StudentHome() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnProfile = new JButton("Profile");
+		btnProfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0){
+				try {
+					new LoginDAO();
+					/*StudentLogin pointer = new StudentLogin();
+					String s_id= pointer.studentpointer;*/
+					profile = new LoginDAO();
+					List<Profile> profileOutput= profile.getProfile("S1");
+					profileDisplay=new ArrayList(profileOutput);
+					setVisible(false);
+					ProfileDisplay p=new ProfileDisplay();
+					p.displayProfile();
+					p.setVisible(true);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+			}
+		});
+		btnProfile.setBounds(33, 16, 115, 29);
+		contentPane.add(btnProfile);
+		
+		JButton btnResources = new JButton("Resources");
+		btnResources.setBounds(33, 72, 115, 29);
+		contentPane.add(btnResources);
+		
+		JButton btnCheckedoutresources = new JButton("<html>Checked-Out-Resources</html>");
+		btnCheckedoutresources.setBounds(224, 72, 189, 29);
+		contentPane.add(btnCheckedoutresources);
+		
+		JButton btnResourcerequest = new JButton("<html>Resource-Request</html>");
+		btnResourcerequest.setBounds(33, 199, 150, 29);
+		contentPane.add(btnResourcerequest);
+		
+		JButton btnNotifications = new JButton("Notifications");
+		btnNotifications.setBounds(33, 135, 131, 29);
+		contentPane.add(btnNotifications);
+		
+		JButton btnDueBalance = new JButton("Due Balance");
+		btnDueBalance.setBounds(256, 135, 131, 29);
+		contentPane.add(btnDueBalance);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setBounds(313, 215, 115, 29);
+		contentPane.add(btnLogout);
+	}
+}
