@@ -1,4 +1,4 @@
- create or replace function alreayIssuedConfp(patron_Id in NUMBER, cISSN in VARCHAR,cLid in NUMBER)
+ create or replace function alreayIssuedConfp(patron_Id in VARCHAR2, cISSN in VARCHAR2,cLid in NUMBER)
 return BOOLEAN
 is
   pId NUMBER;

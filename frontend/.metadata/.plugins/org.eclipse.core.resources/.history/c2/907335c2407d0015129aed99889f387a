@@ -1,0 +1,19 @@
+package librarymanagement;
+
+public class Profile {
+	
+	private int first_name;
+	public int getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(int first_name) {
+		this.first_name = first_name;
+	}
+
+	public Profile(int first_name) {
+		super();
+		this.first_name = first_name;
+	}
+
+}

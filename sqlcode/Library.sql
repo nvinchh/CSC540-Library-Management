@@ -26,6 +26,8 @@ CREATE TABLE students
     s_category     VARCHAR2(15),
     s_credit       NUMBER(8,2),
     dept_code      NUMBER(5),
+    pswd           VARCHAR2(15),
+    onhold         number(1),
     CONSTRAINT s_id_pk PRIMARY KEY(s_id),
     CONSTRAINT departments_fk FOREIGN KEY (dept_code) REFERENCES departments(dept_code)
   );
@@ -41,6 +43,8 @@ CREATE TABLE faculty
     f_category  VARCHAR2(20),
     f_credit    NUMBER(8,2),
     dept_code   NUMBER(5),
+    pswd        VARCHAR2(15),
+    onhold      NUMBER(1),
     CONSTRAINT f_id_pk PRIMARY KEY(f_id),
     CONSTRAINT departments_faculty_fk FOREIGN KEY (dept_code) REFERENCES departments(dept_code)
   );

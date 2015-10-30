@@ -7,13 +7,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+
+import dbproject.Department;
 
 public class LoginDAO {
 	private Connection conn;
     private int countStudent;
     private int countFaculty;
-	public LoginDAO() throws Exception {
+    private List<Profile> list=new ArrayList();
+    public LoginDAO() throws Exception {
 		System.out.println(new java.io.File("").getAbsolutePath());
 
 		// load database details
@@ -53,6 +58,7 @@ public class LoginDAO {
 		return countStudent;
 	}
 	
+	
 	public int checkFaculty(String facultyid,String password)
 	{
 		try
@@ -78,13 +84,40 @@ public class LoginDAO {
 		return countFaculty;
 	}
 	
+	public List<Profile> getProfile(String s_id) throws Exception{
+		try {
+			
+			PreparedStatement pst=conn.prepareStatement("select first_name from students where s_id=?");
+			pst.setString(1, s_id);
+			ResultSet rst=pst.executeQuery();
+			while(rst.next())
+			{
+				Profile tempprofile=convertRowToProfile(rst);
+				list.add(tempprofile);
+				}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+		
+	}
+	
+	private Profile convertRowToProfile(ResultSet rst) throws SQLException {
+
+		String first_name = rst.getString(1);
+		Profile tempProfile = new Profile(first_name);
+		return tempProfile;
+	}
+    
+	
 	public static void main(String args[]) throws Exception
 	{
 		LoginDAO newtest=new LoginDAO();
-		int r =newtest.checkFaculty("f1","wwhite");
-		System.out.println(r);
-		
-		
+		List r =newtest.getProfile("S1");
+		System.out.println(r);;
 	}
 }
 
