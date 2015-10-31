@@ -1,0 +1,7 @@
+package dbproject;
+
+import javax.swing.table.AbstractTableModel;
+
+public class ProfileTableModel extends AbstractTableModel{
+
+}

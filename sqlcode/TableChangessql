@@ -98,6 +98,48 @@ modify title VARCHAR2(30);
 alter table econfproceedings
 modify conf_name VARCHAR2(30);
 
+<<<<<<< HEAD
 alter table queue_books
 add (ptype CHAR(1));
 
+=======
+--books_checkout (making checkout time a primary key)
+
+alter table books_checkout
+drop constraint bcheckout_checkout_pk;
+
+alter table books_checkout
+add CONSTRAINT bcheckout_checkout_pk PRIMARY KEY(resource_id,checkoutdate,l_id,p_id);
+
+alter table books_checkout
+add returndate TIMESTAMP;
+
+--journals_checkout (making checkout time a primary key)
+alter table journals_checkout
+drop constraint journals_checkout_pk;
+
+alter table journals_checkout
+add CONSTRAINT journals_checkout_pk PRIMARY KEY(resource_id,checkoutdate,l_id,p_id);
+
+alter table journals_checkout
+add returndate TIMESTAMP;
+
+--conf_proceedings (making checkout time a primary key)
+
+alter table confp_checkout
+drop constraint confp_checkout_pk;
+
+alter table confp_checkout
+add CONSTRAINT confp_checkout_pk PRIMARY KEY(resource_id,checkoutdate,l_id,p_id);
+
+alter table confp_checkout
+add returndate TIMESTAMP;
+
+
+---add fine and status
+alter table journals_checkout
+add fine NUMBER(5) Default 0;
+
+alter table journals_checkout
+add Status VARCHAR2(5) Default Null;
+>>>>>>> 81f32fd2873e1175d94b15fd24ed7b818f02889a

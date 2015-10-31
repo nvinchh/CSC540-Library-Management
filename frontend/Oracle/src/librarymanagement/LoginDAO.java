@@ -87,7 +87,7 @@ public class LoginDAO {
 	public List<Profile> getProfile(String s_id) throws Exception{
 		try {
 			
-			PreparedStatement pst=conn.prepareStatement("select first_name from students where s_id=?");
+			PreparedStatement pst=conn.prepareStatement("select * from students where s_id=?");
 			pst.setString(1, s_id);
 			ResultSet rst=pst.executeQuery();
 			while(rst.next())
@@ -107,8 +107,20 @@ public class LoginDAO {
 	
 	private Profile convertRowToProfile(ResultSet rst) throws SQLException {
 
-		String first_name = rst.getString(1);
-		Profile tempProfile = new Profile(first_name);
+		String first_name = rst.getString(2);
+		String last_name= rst.getString(3);
+		String sex=rst.getString(4);
+		String nationality=rst.getString(6);
+		int main_phone=rst.getInt(7);
+		String city=rst.getString(9);
+		String street=rst.getString(10);
+		String zipcode=rst.getString(11);
+		String degree_program=rst.getString(12);
+		String classification=rst.getString(13);
+		String s_category=rst.getString(14);
+		double s_credit=rst.getDouble(15);		
+		Profile tempProfile = new Profile(first_name,last_name,sex,nationality,main_phone,city,street,
+				zipcode,degree_program,classification,s_category,s_credit);
 		return tempProfile;
 	}
     
@@ -117,7 +129,7 @@ public class LoginDAO {
 	{
 		LoginDAO newtest=new LoginDAO();
 		List r =newtest.getProfile("S1");
-		System.out.println(r);;
+		System.out.println(r.size());
 	}
 }
 

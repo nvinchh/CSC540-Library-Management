@@ -41,28 +41,28 @@ public class FacultyLogin extends JFrame {
 	 */
 	public FacultyLogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(500, 500, 700, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblFacultyid = new JLabel("Faculty_id");
-		lblFacultyid.setBounds(67, 81, 85, 27);
+		lblFacultyid.setBounds(162, 144, 85, 27);
 		contentPane.add(lblFacultyid);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(67, 124, 69, 20);
+		lblPassword.setBounds(162, 207, 99, 36);
 		contentPane.add(lblPassword);
 		
 		facultyid = new JTextField();
-		facultyid.setBounds(162, 81, 146, 26);
+		facultyid.setBounds(295, 139, 146, 36);
 		contentPane.add(facultyid);
 		facultyid.setColumns(10);
 		
 		
 		password = new JPasswordField();
-		password.setBounds(162, 121, 146, 26);
+		password.setBounds(295, 203, 146, 36);
 		contentPane.add(password);
 		
 		JButton btnSubmit = new JButton("Submit");
@@ -97,7 +97,7 @@ public class FacultyLogin extends JFrame {
 				}
 			}
 		});
-		btnSubmit.setBounds(67, 174, 115, 29);
+		btnSubmit.setBounds(157, 283, 115, 29);
 		contentPane.add(btnSubmit);
 	
 	}

@@ -36,7 +36,7 @@ public class MainPage extends JFrame {
 	public MainPage() {
 		setTitle("Main Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(500, 500, 700, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -50,7 +50,7 @@ public class MainPage extends JFrame {
 			student.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(65, 102, 125, 34);
+		btnNewButton.setBounds(120, 214, 184, 66);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Faculty");
@@ -61,7 +61,7 @@ public class MainPage extends JFrame {
 				student.setVisible(true);	
 			}
 		});
-		btnNewButton_1.setBounds(240, 105, 115, 29);
+		btnNewButton_1.setBounds(383, 214, 184, 66);
 		contentPane.add(btnNewButton_1);
 	}
 
