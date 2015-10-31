@@ -3,8 +3,8 @@ return BOOLEAN
 is
   on_Hold NUMBER;
 begin
-DBMS_OUTPUT.put_line('here67');
-if(var_Type='s') then
+--DBMS_OUTPUT.put_line('here67');
+if(var_Type='S') then
         SELECT ONHOLD
         INTO  on_Hold
         FROM STUDENTS S
@@ -16,10 +16,10 @@ else
         WHERE F.F_ID= patron_Id;
 end if;
 if(on_Hold=1)then
-DBMS_OUTPUT.put_line('heref');
+--DBMS_OUTPUT.put_line('heref');
 return false;
 else
-DBMS_OUTPUT.put_line('heret');
+--DBMS_OUTPUT.put_line('heret');
 return true;
 end if;
 end;
