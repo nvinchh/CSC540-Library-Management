@@ -4,18 +4,18 @@ IS
      varType CHAR;
      qty NUMBER;
 BEGIN
- DBMS_OUTPUT.PUT_LINE('Here1');
+ --DBMS_OUTPUT.PUT_LINE('Here1');
 --Determine whether faculty or student
    SELECT P.TYPE
    INTO  varType
     FROM PATRONS P
     WHERE P.P_ID = patronId;
- DBMS_OUTPUT.PUT_LINE('Here2');
+ --DBMS_OUTPUT.PUT_LINE('Here2');
 -- Check whether in hold or not
  if(checkHold(patronId,varType)) then
-  DBMS_OUTPUT.PUT_LINE('Here3');
+  --DBMS_OUTPUT.PUT_LINE('Here3');
        if(alreayIssuedConfp(patronId,cISSN,cLid)=false) then
-        DBMS_OUTPUT.PUT_LINE('Here4');
+        --DBMS_OUTPUT.PUT_LINE('Here4');
                SELECT QUANTITY INTO  qty FROM CONFPROCEEDINGS WHERE (CONF_NUM = cISSN AND L_ID = cLid);
                if(qty>0) then
                   insert into CONFP_CHECKOUT values(cISSN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronId,cLid);
