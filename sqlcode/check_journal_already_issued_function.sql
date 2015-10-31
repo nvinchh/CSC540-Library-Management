@@ -1,8 +1,9 @@
- create or replace function alreayIssuedJournal(patron_Id in VARCHAR2, jISSN in VARCHAR2,jLid in NUMBER)
+create or replace function alreayIssuedJournal(patron_Id in VARCHAR2, jISSN in VARCHAR2,jLid in NUMBER)
 return BOOLEAN
 is
   pId NUMBER;
 begin
+     DBMS_OUTPUT.put_line('hereee');
     SELECT count(J.P_ID)
     INTO  pId
     FROM JOURNALS_CHECKOUT J

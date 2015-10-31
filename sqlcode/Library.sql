@@ -26,8 +26,6 @@ CREATE TABLE students
     s_category     VARCHAR2(15),
     s_credit       NUMBER(8,2),
     dept_code      NUMBER(5),
-    pswd           VARCHAR2(15),
-    onhold         number(1),
     CONSTRAINT s_id_pk PRIMARY KEY(s_id),
     CONSTRAINT departments_fk FOREIGN KEY (dept_code) REFERENCES departments(dept_code)
   );
@@ -43,8 +41,6 @@ CREATE TABLE faculty
     f_category  VARCHAR2(20),
     f_credit    NUMBER(8,2),
     dept_code   NUMBER(5),
-    pswd        VARCHAR2(15),
-    onhold      NUMBER(1),
     CONSTRAINT f_id_pk PRIMARY KEY(f_id),
     CONSTRAINT departments_faculty_fk FOREIGN KEY (dept_code) REFERENCES departments(dept_code)
   );
@@ -183,7 +179,7 @@ create table books_checkout
 create table journals_checkout
  (
   resource_id VARCHAR2(20),
-  checkoutdate TIMESTAMP ,
+  checkoutdate TIMESTAMP,
   duedate TIMESTAMP,
   p_id VARCHAR(20),
   l_id NUMBER(2),
@@ -201,9 +197,10 @@ create table confp_checkout
   p_id VARCHAR2(20),
   l_id NUMBER(2),
   CONSTRAINT cpcheckout_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
-  CONSTRAINT cp_checkout_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),
-  CONSTRAINT cp_patrons_fk FOREIGN KEY (p_id) references patrons
+  CONSTRAINT cp_checkoutt_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),
+  CONSTRAINT cp_patron_fk FOREIGN KEY (p_id) references patrons
   );
+
 
 
    

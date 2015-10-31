@@ -1,4 +1,4 @@
-create or replace procedure queueJournal(patron_Id in NUMBER, jISSN in VARCHAR,jLid in NUMBER, pty in CHAR) 
+create or replace procedure queueJournal(patron_Id in VARCHAR2, jISSN in VARCHAR2,jLid in NUMBER, pty in CHAR) 
 IS
  tcount NUMBER;
  countst NUMBER;
