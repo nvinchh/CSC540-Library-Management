@@ -97,3 +97,7 @@ modify title VARCHAR2(30);
 
 alter table econfproceedings
 modify conf_name VARCHAR2(30);
+
+alter table queue_books
+add (ptype CHAR(1));
+

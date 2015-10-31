@@ -122,7 +122,25 @@ is
 begin
     SELECT count(J.P_ID)
     INTO  pId
-    FROM queue_confpro
+    FROM queue_confpro J
+    WHERE J.P_ID = patron_Id
+    AND J.RESOURCE_ID=jISSN
+    AND J.L_ID=jLid;
+if(pId=1) then
+return true;
+else
+return false;
+end if;
+end;
+
+create or replace function alreayQueuedbooks(patron_Id in VARCHAR2, jISSN in VARCHAR2,jLid in NUMBER)
+return BOOLEAN
+is
+  pId NUMBER;
+begin
+    SELECT count(J.P_ID)
+    INTO  pId
+    FROM queue_books J
     WHERE J.P_ID = patron_Id
     AND J.RESOURCE_ID=jISSN
     AND J.L_ID=jLid;
