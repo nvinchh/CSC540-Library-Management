@@ -1,4 +1,4 @@
- create or replace function alreayIssuedJournal(patron_Id in VARCHAR2, jISSN in VARCHAR2,jLid in NUMBER)
+create or replace function alreayIssuedJournal(patron_Id in VARCHAR2, jISSN in VARCHAR2,jLid in NUMBER)
 return BOOLEAN
 is
   pId NUMBER;
@@ -94,5 +94,41 @@ begin
           else
           return false;
           end if;
+end if;
+end;
+
+create or replace function alreayQueuedJournal(patron_Id in VARCHAR2, jISSN in VARCHAR2,jLid in NUMBER)
+return BOOLEAN
+is
+  pId NUMBER;
+begin
+    SELECT count(J.P_ID)
+    INTO  pId
+    FROM queue_journals
+    WHERE J.P_ID = patron_Id
+    AND J.RESOURCE_ID=jISSN
+    AND J.L_ID=jLid;
+if(pId=1) then
+return true;
+else
+return false;
+end if;
+end;
+
+create or replace function alreayQueuedconfproceedings(patron_Id in VARCHAR2, jISSN in VARCHAR2,jLid in NUMBER)
+return BOOLEAN
+is
+  pId NUMBER;
+begin
+    SELECT count(J.P_ID)
+    INTO  pId
+    FROM queue_confpro
+    WHERE J.P_ID = patron_Id
+    AND J.RESOURCE_ID=jISSN
+    AND J.L_ID=jLid;
+if(pId=1) then
+return true;
+else
+return false;
 end if;
 end;

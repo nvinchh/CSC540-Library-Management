@@ -18,12 +18,12 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Here4');
                SELECT QUANTITY INTO  qty FROM CONFPROCEEDINGS WHERE (CONF_NUM = cISSN AND L_ID = cLid);
                if(qty>0) then
-                  insert into CONFP_CHECKOUT values(cISSN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronID,cLid);
+                  insert into CONFP_CHECKOUT values(cISSN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronId,cLid);
                   update CONFPROCEEDINGS set quantity=(qty-1) where( CONF_NUM=cISSN AND L_ID=cLid);
                else
-                  --if(varType='s') then
+                  if(alreayQueuedconfproceedings(patronId,cISSN,cLid)=false)then 
                   queueConf(patronId,cISSN,cLid,varType);
-                  --end if;
+                  end if;
                end if;
                --need to add into queue if qty<1
        end if;
