@@ -1,0 +1,34 @@
+package librarymanagement;
+
+public class Profile {
+	
+	private String first_name;
+	private String last_name;
+	private String sex;           
+	private String nationality;
+	private int main_phone;
+	private String city;           
+	private String street;
+	private String zipcode;
+	private String degree_program ;
+	private String classification ;
+	private String s_category ;
+	private int  s_credit;
+	
+	public String getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+	public Profile(String first_name) {
+		super();
+		this.first_name = first_name;
+	}
+ public String toString()
+ {
+			return String.format(this.first_name);
+ }
+}

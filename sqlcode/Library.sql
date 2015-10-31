@@ -19,9 +19,9 @@ CREATE TABLE students
     main_phone     NUMBER(10)NOT NULL,
     sec_phone      NUMBER(10),
     city           VARCHAR2(20),
-    street         VARCHAR(20),
-    zipcode        VARCHAR(5),
-    degree_program VARCHAR(3),
+    street         VARCHAR2(20),
+    zipcode        VARCHAR2(5),
+    degree_program VARCHAR2(3),
     classification VARCHAR2(20),
     s_category     VARCHAR2(15),
     s_credit       NUMBER(8,2),
@@ -170,13 +170,13 @@ create table patrons
 create table books_checkout
  (
   resource_id VARCHAR2(20),
-  checkoutdate TIMESTAMP ,
+  checkoutdate TIMESTAMP,
   duedate TIMESTAMP,
   p_id VARCHAR2(20),
   l_id NUMBER(2),
   CONSTRAINT bcheckout_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
   CONSTRAINT bcheckout_books_fk FOREIGN KEY (resource_id,l_id) REFERENCES books(isbn,l_id),
-  CONSTRAINT bcheckout_patrons_fk FOREIGN KEY (p_id) references patrons
+  CONSTRAINT bcheckout_patrons_fk FOREIGN KEY (p_id) references patrons(p_id)
   );
   
 --checkout journals
@@ -189,7 +189,7 @@ create table journals_checkout
   l_id NUMBER(2),
   CONSTRAINT journals_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
   CONSTRAINT jcheckout_journals_fk FOREIGN KEY (resource_id,l_id) REFERENCES journals(issn,l_id),
-  CONSTRAINT jcheckout_patrons_fk FOREIGN KEY (p_id) references patrons
+  CONSTRAINT jcheckout_patrons_fk FOREIGN KEY (p_id) references patrons(p_id)
   );
 
   
@@ -202,7 +202,7 @@ create table confp_checkout
   l_id NUMBER(2),
   CONSTRAINT cpcheckout_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
   CONSTRAINT cp_checkout_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),
-  CONSTRAINT cp_patrons_fk FOREIGN KEY (p_id) references patrons
+  CONSTRAINT cp_patrons_fk FOREIGN KEY (p_id) references patrons(p_id)
   );
 
 

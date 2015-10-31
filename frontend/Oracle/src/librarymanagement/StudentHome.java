@@ -28,6 +28,7 @@ public class StudentHome extends JFrame {
 				try {
 					StudentHome frame = new StudentHome();
 					frame.setVisible(true);
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,7 +41,7 @@ public class StudentHome extends JFrame {
 	 */
 	public StudentHome() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(500, 500, 700, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -50,16 +51,16 @@ public class StudentHome extends JFrame {
 		btnProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				try {
-					StudentLogin pointer = new StudentLogin();
+					/*StudentLogin pointer = new StudentLogin();
 					String s_id= pointer.studentpointer;
 					profile = new LoginDAO();
 					List<Profile> profileOutput= profile.getProfile(s_id);
 					System.out.println(profileOutput.size());
-					System.out.println(profileOutput.get(0));
+					System.out.println(profileOutput.get(0));*/
 					setVisible(false);
 					ProfileDisplay p=new ProfileDisplay();
 					p.setVisible(true);
-					p.displayData(profileOutput);
+					//p.displayData(profileOutput);
 					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -69,31 +70,38 @@ public class StudentHome extends JFrame {
 				
 			}
 		});
-		btnProfile.setBounds(33, 16, 115, 29);
+		btnProfile.setBounds(77, 82, 181, 64);
 		contentPane.add(btnProfile);
 		
 		JButton btnResources = new JButton("Resources");
-		btnResources.setBounds(33, 72, 115, 29);
+		btnResources.setBounds(77, 181, 181, 64);
 		contentPane.add(btnResources);
 		
 		JButton btnCheckedoutresources = new JButton("<html>Checked-Out-Resources</html>");
-		btnCheckedoutresources.setBounds(224, 72, 189, 29);
+		btnCheckedoutresources.setBounds(384, 82, 201, 64);
 		contentPane.add(btnCheckedoutresources);
 		
 		JButton btnResourcerequest = new JButton("<html>Resource-Request</html>");
-		btnResourcerequest.setBounds(33, 199, 150, 29);
+		btnResourcerequest.setBounds(77, 282, 181, 64);
 		contentPane.add(btnResourcerequest);
 		
 		JButton btnNotifications = new JButton("Notifications");
-		btnNotifications.setBounds(33, 135, 131, 29);
+		btnNotifications.setBounds(384, 282, 201, 64);
 		contentPane.add(btnNotifications);
 		
 		JButton btnDueBalance = new JButton("Due Balance");
-		btnDueBalance.setBounds(256, 135, 131, 29);
+		btnDueBalance.setBounds(384, 181, 201, 64);
 		contentPane.add(btnDueBalance);
 		
-		JButton btnLogout = new JButton("Logout");
-		btnLogout.setBounds(313, 215, 115, 29);
-		contentPane.add(btnLogout);
+		JButton btnNewButton = new JButton("logout");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				StudentLogin s =new StudentLogin();
+				setVisible(false);
+				s.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(531, 442, 119, 36);
+		contentPane.add(btnNewButton);
 	}
 }

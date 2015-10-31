@@ -1,0 +1,65 @@
+package librarymanagement;
+
+import java.util.List;
+
+import javax.swing.table.AbstractTableModel;
+
+import dbproject.Department;
+
+public class ProfileTableModel extends AbstractTableModel{
+	
+	private static final int first_name=0;
+	private static final int last_name=1;
+	private static final int sex=2; 
+	private static final int nationality=3;
+	private static final int main_phone=4;
+	private static final int city=5;           
+	private static final int street=6;
+	private static final int zipcode=7;
+	private static final int degree_program=8;
+	private static final int classification=9;
+	private static final int s_category=10;
+	private static final int s_credit=11;
+
+	private String[] columnNames = { "first_name", "last_name","sex","nationality","main_phone"
+			                        ,"city","street","zip_code","degree_program","classification","s_category","s_credit"};
+	private List<Profile> profile;
+
+	public ProfileTableModel(List<Profile> theProfile) {
+		profile = theProfile;
+	}
+
+	// overrode the method
+	public int getColumnCount() {
+		return columnNames.length;
+	}
+
+	// override the method
+
+	public int getRowCount() {
+		return departments.size();
+	}
+
+	public String getColumnName(int col) {
+		return columnNames[col];
+	}
+
+	public Object getValueAt(int row,int col)
+	{
+		Department tempDepartment=departments.get(row);
+		
+		switch (col){
+			case dept_code_col:
+			return tempDepartment.getDept_code();
+			case dept_name_col:
+			return tempDepartment.getDept_name();	
+			default:
+			return tempDepartment.getDept_name();
+			
+		}
+	}
+	
+	public Class getColumnClass(int c){
+		return getValueAt(0, c).getClass();
+
+}
