@@ -17,7 +17,7 @@ Modify f_id VARCHAR2(20);
 --create table teaches again
 
 alter table ebooks
-modify isbn VARCHAR2(20)
+modify isbn VARCHAR2(20);
 
 alter table econfproceedings
 modify conf_num VARCHAR2(20);
@@ -27,7 +27,8 @@ modify issn VARCHAR2(20);
 
 
 drop table journals_checkout;
-
+select * from journals;
+delete from journals;
 alter table journals
 modify issn VARCHAR2(20);
 
@@ -55,3 +56,13 @@ select * from books;
  drop table patrons;
  drop table books;
  
+ -- drop tables queues
+ drop table queue_books;
+ drop table queue_journals;
+ drop table queue_confpro;
+ drop table queue_ebooks;
+ drop table queue_ejournals;
+ drop table queue_econfpro;
+ 
+alter table queue_confpro
+add (ptype CHAR(1));

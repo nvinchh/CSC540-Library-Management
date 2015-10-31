@@ -18,4 +18,70 @@ CREATE TABLE teaches
     CONSTRAINT courses1_fk FOREIGN KEY (c_id) REFERENCES courses(c_id)
   );
   
+  create table queue_books
+(
+ resource_id VARCHAR2(20),
+ queue_no_b Number(2),
+ p_id VARCHAR2(20),
+ l_id NUMBER(2),
+ CONSTRAINT queue_books_pk PRIMARY KEY(resource_id,l_id,p_id),
+ CONSTRAINT b_queue_fk FOREIGN KEY (resource_id,l_id) REFERENCES books(isbn,l_id),
+ CONSTRAINT b_patrons_fk FOREIGN KEY (p_id) references patrons 
+);
+
+create table queue_journals
+(
+ resource_id VARCHAR2(20),
+ queue_no_j Number(2),
+ p_id VARCHAR2(20),
+ ptype CHAR(1),
+ l_id NUMBER(2),
+ CONSTRAINT queue_journals_pk PRIMARY KEY(resource_id,l_id,p_id),
+ CONSTRAINT j_queue_fk FOREIGN KEY (resource_id,l_id) REFERENCES journals(issn,l_id),
+ CONSTRAINT j_patrons_fk FOREIGN KEY (p_id) references patrons
+);
+
+create table queue_confpro
+(
+ resource_id VARCHAR2(20),
+ queue_no_cp Number(2),
+ p_id VARCHAR2(20),
+ l_id NUMBER(2),
+ CONSTRAINT queue_confpro_pk PRIMARY KEY(resource_id,l_id,p_id),
+ CONSTRAINT cp_queue_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),
+ CONSTRAINT cp_patrons_fk FOREIGN KEY (p_id) references patrons
+);
+ 
+create table queue_ebooks
+(
+ resource_id VARCHAR2(20),
+ queue_no_eb Number(2),
+ p_id VARCHAR2(20),
+ CONSTRAINT queue_ebooks_pk PRIMARY KEY(resource_id,p_id),
+ CONSTRAINT eb_queue_fk FOREIGN KEY (resource_id) REFERENCES ebooks(isbn),
+ CONSTRAINT eb_patrons_fk FOREIGN KEY (p_id) references patrons 
+); 
+ 
+ create table queue_ejournals
+(
+ resource_id VARCHAR2(20),
+ queue_no_ejournals Number(2),
+ p_id VARCHAR2(20),
+ CONSTRAINT queue_ejournals_pk PRIMARY KEY(resource_id,p_id),
+ CONSTRAINT ej_queue_fk FOREIGN KEY (resource_id) REFERENCES ejournals(issn),
+ CONSTRAINT ej_patrons_fk FOREIGN KEY (p_id) references patrons 
+); 
+
+create table queue_econfpro
+(
+ resource_id VARCHAR2(20),
+ queue_no_econfpro Number(2),
+ p_id VARCHAR2(20),
+ CONSTRAINT queue_econfpro_pk PRIMARY KEY(resource_id,p_id),
+ CONSTRAINT ec_queue_fk FOREIGN KEY (resource_id) REFERENCES econfproceedings(conf_num),
+ CONSTRAINT ec_patrons_fk FOREIGN KEY (p_id) references patrons 
+); 
+ 
+   
+  
     
