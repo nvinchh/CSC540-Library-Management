@@ -50,8 +50,8 @@ create table queue_confpro
  ptype CHAR(1),
  l_id NUMBER(2),
  CONSTRAINT queue_confpro_pk PRIMARY KEY(resource_id,l_id,p_id),
- CONSTRAINT cp_queue_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),
- CONSTRAINT cp_patrons_fk FOREIGN KEY (p_id) references patrons
+ CONSTRAINT cp_queuec_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),
+ CONSTRAINT cp_patronsc_fk FOREIGN KEY (p_id) references patrons
 );
  
 create table queue_ebooks

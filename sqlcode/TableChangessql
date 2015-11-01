@@ -170,4 +170,8 @@ alter table books_checkout
 modify returndate Timestamp Default Null;
 =======
 >>>>>>> 81f32fd2873e1175d94b15fd24ed7b818f02889a
+<<<<<<< Updated upstream
 >>>>>>> 5e76463fb1671e4ea643a157cfcebc2d1e5ecf69
+=======
+
+>>>>>>> Stashed changes

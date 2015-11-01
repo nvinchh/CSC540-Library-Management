@@ -106,7 +106,7 @@ is
 begin
     SELECT count(J.P_ID)
     INTO  pId
-    FROM queue_journals
+    FROM queue_journals J
     WHERE J.P_ID = patron_Id
     AND J.RESOURCE_ID=jISSN
     AND J.L_ID=jLid;
