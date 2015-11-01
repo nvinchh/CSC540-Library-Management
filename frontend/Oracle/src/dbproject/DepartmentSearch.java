@@ -25,6 +25,7 @@ public class DepartmentSearch extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField departmentNametextField;
+	private final DepartmentTableModel rowshow;
 	private JTable table;
 	private StudentDAO studentDAO;
 
@@ -56,7 +57,7 @@ public class DepartmentSearch extends JFrame {
 		}
 		setTitle("Department Search");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(300, 300, 750, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -104,12 +105,21 @@ public class DepartmentSearch extends JFrame {
 			}
 		});
 		panel.add(btnSearch);
-
-		JScrollPane scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
-
-		table = new JTable();
-		scrollPane.setViewportView(table);
+				
+				JButton showrow = new JButton("showrow");
+				showrow.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						
+					}
+				});
+				panel.add(showrow);
+		
+				JScrollPane scrollPane = new JScrollPane();
+				panel.add(scrollPane);
+				
+						table = new JTable();
+						scrollPane.setViewportView(table);
 	}
 
 }
