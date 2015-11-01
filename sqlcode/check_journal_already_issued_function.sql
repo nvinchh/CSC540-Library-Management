@@ -8,6 +8,7 @@ begin
     FROM JOURNALS_CHECKOUT J
     WHERE J.P_ID = patron_Id
     AND J.RESOURCE_ID=jISSN
+    AND J.RETURNDATE IS NULL
     AND J.L_ID=jLid;
 if(pId=1) then
 return true;
@@ -26,6 +27,7 @@ begin
     FROM BOOKS_CHECKOUT J
     WHERE J.P_ID = patron_Id
     AND J.RESOURCE_ID=bISBN
+    AND J.RETURNDATE IS NULL
     AND J.L_ID=jLid;
 if(pId=1) then
 return true;

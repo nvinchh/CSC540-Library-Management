@@ -18,7 +18,7 @@ BEGIN
                  --DBMS_OUTPUT.put_line('here2');
                SELECT QUANTITY INTO  qty FROM JOURNALS WHERE (ISSN = jISSN AND L_ID = jLid);
                if(qty>0) then
-                  insert into JOURNALS_CHECKOUT values(jISSN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronId,jLid);
+                  insert into JOURNALS_CHECKOUT values(jISSN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronId,jLid,null);
                   update journals set quantity=(qty-1) where( ISSN=jISSN AND L_ID=jLid);
                ELSE
                if(alreadyQueuedJournal(patronId,jISSN,jLid)=false)then 
@@ -52,7 +52,7 @@ BEGIN
        if(alreayIssuedBook(patronId,bISBN,jLid)=false) then
                SELECT B_QUANTITY INTO  qty FROM BOOKS WHERE (ISBN = bISBN AND L_ID = jLid);
                if(qty>0) then
-                  insert into BOOKS_CHECKOUT values(bISBN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronId,jLid);
+                  insert into BOOKS_CHECKOUT values(bISBN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronId,jLid,null);
                   update BOOKS set B_QUANTITY=(qty-1) where( ISBN=bISBN AND L_ID=jLid);
                ELSE
                 if(alreayQueuedbooks(patronId,bISBN,jLid)= false) then
@@ -68,7 +68,7 @@ BEGIN
                if(alreayIssuedBook(patronId,bISBN,jLid)=false) then
                SELECT B_QUANTITY INTO  qty FROM BOOKS WHERE (ISBN = bISBN AND L_ID = jLid);
                if(qty>0) then
-                  insert into BOOKS_CHECKOUT values(bISBN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronID,jLid);
+                  insert into BOOKS_CHECKOUT values(bISBN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronID,jLid,null);
                   update BOOKS set B_QUANTITY=(qty-1) where( ISBN=bISBN AND L_ID=jLid);
                if(alreayQueuedbooks(patronId,bISBN,jLid)= false) then
                 queueBook(patronId, bISBN, jLid, varType);
