@@ -23,8 +23,8 @@ public class LoginDAO {
 
 		// load database details
 		Properties prop = new Properties();
-		prop.load(new FileInputStream("C:/Users/Vaibhav/workspace/Oracle/Sql/dbinfo.properties"));
-
+		prop.load(new FileInputStream("C:/Users/admin/Documents/GitHub/CSC540_LibraryManagment/frontend/Oracle/Sql/dbinfo.properties"));
+	
 		String dburl = prop.getProperty("dburl");
 		String user = prop.getProperty("user");
 		String password = prop.getProperty("password");
