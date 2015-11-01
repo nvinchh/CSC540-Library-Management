@@ -1,6 +1,7 @@
 
 package librarymanagement;
 
+import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
 
@@ -23,64 +24,84 @@ public class FacultyHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        profil = new javax.swing.JButton();
+        checked_out_resources = new javax.swing.JButton();
+        resources = new javax.swing.JButton();
+        due_balance = new javax.swing.JButton();
+        resource_request = new javax.swing.JButton();
+        notifications = new javax.swing.JButton();
+        reserved_books = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setLabel("Profile");
-        jButton1.setName("profile"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        profil.setLabel("Profile");
+        profil.setName(""); // NOI18N
+        profil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                profilActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Checked-Out Resources");
-        jButton2.setName("checked_out_resources"); // NOI18N
-        jButton2.setOpaque(false);
-
-        jButton3.setText("Resources");
-        jButton3.setName("resources"); // NOI18N
-        jButton3.setOpaque(false);
-
-        jButton4.setText("Due Balance");
-        jButton4.setName("due_balance"); // NOI18N
-        jButton4.setOpaque(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        checked_out_resources.setText("Checked-Out Resources");
+        checked_out_resources.setName("checked_out_resources"); // NOI18N
+        checked_out_resources.setOpaque(false);
+        checked_out_resources.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                checked_out_resourcesActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Resource-Request");
-        jButton5.setName("resource_request"); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        resources.setText("Resources");
+        resources.setName("resources"); // NOI18N
+        resources.setOpaque(false);
+        resources.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                resourcesActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Notifications");
-        jButton6.setName("notifications"); // NOI18N
-
-        jButton7.setText("Reserved Books");
-        jButton7.setName("reserved_books"); // NOI18N
-        jButton7.setOpaque(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        due_balance.setText("Due Balance");
+        due_balance.setName("due_balance"); // NOI18N
+        due_balance.setOpaque(false);
+        due_balance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                due_balanceActionPerformed(evt);
             }
         });
 
-        jButton8.setText("Logout");
-        jButton8.setName("logout"); // NOI18N
+        resource_request.setText("Resource-Request");
+        resource_request.setName("resource_request"); // NOI18N
+        resource_request.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resource_requestActionPerformed(evt);
+            }
+        });
+
+        notifications.setText("Notifications");
+        notifications.setName("notifications"); // NOI18N
+        notifications.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notificationsActionPerformed(evt);
+            }
+        });
+
+        reserved_books.setText("Reserved Books");
+        reserved_books.setName("reserved_books"); // NOI18N
+        reserved_books.setOpaque(false);
+        reserved_books.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reserved_booksActionPerformed(evt);
+            }
+        });
+
+        logout.setText("Logout");
+        logout.setName("logout"); // NOI18N
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,20 +109,20 @@ public class FacultyHome extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton8)
+                .addComponent(logout)
                 .addGap(49, 49, 49))
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(reserved_books, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(resource_request, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                    .addComponent(resources, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(profil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(due_balance, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checked_out_resources)
+                    .addComponent(notifications, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,45 +130,91 @@ public class FacultyHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(profil)
+                    .addComponent(checked_out_resources, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(resources)
+                    .addComponent(due_balance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(resource_request)
+                    .addComponent(notifications, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton7)
+                .addComponent(reserved_books)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addComponent(jButton8)
+                .addComponent(logout)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private String string;
 
     /**
-     * @param args the command line arguments
+     * Get the value of string
+     *
+     * @return the value of string
      */
+    public String getString() {
+        return string;
+    }
+
+    /**
+     * Set the value of string
+     *
+     * @param string new value of string
+     */
+    public void setString(String string) {
+        this.string = string;
+    }
+
+    private void profilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profilActionPerformed
+
+    private void due_balanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_due_balanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_due_balanceActionPerformed
+
+    private void resource_requestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resource_requestActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resource_requestActionPerformed
+
+    private void reserved_booksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserved_booksActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reserved_booksActionPerformed
+
+    private void checked_out_resourcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checked_out_resourcesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checked_out_resourcesActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+
+				FacultyLogin j =new FacultyLogin();
+				setVisible(false);
+				j.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void notificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_notificationsActionPerformed
+
+    private void resourcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resourcesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resourcesActionPerformed
+
+   /* private void jButton8ActionPerformed(java.awt.event.ActionEvent evt){
+				FacultyLogin s = new FacultyLogin();
+				setVisible(false);
+				s.setVisible(true);
+			}
+    }
+    /**
+     * @param args the command line arguments
+     */     
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -182,13 +249,13 @@ public class FacultyHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton checked_out_resources;
+    private javax.swing.JButton due_balance;
+    private javax.swing.JButton logout;
+    private javax.swing.JButton notifications;
+    private javax.swing.JButton profil;
+    private javax.swing.JButton reserved_books;
+    private javax.swing.JButton resource_request;
+    private javax.swing.JButton resources;
     // End of variables declaration//GEN-END:variables
 }
