@@ -170,7 +170,7 @@ create table books_checkout
   duedate TIMESTAMP,
   p_id VARCHAR2(20),
   l_id NUMBER(2),
-  CONSTRAINT bcheckout_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
+  CONSTRAINT bcheckout_checkout_pk PRIMARY KEY(resource_id,checkoutdate,l_id,p_id),
   CONSTRAINT bcheckout_books_fk FOREIGN KEY (resource_id,l_id) REFERENCES books(isbn,l_id),
   CONSTRAINT bcheckout_patrons_fk FOREIGN KEY (p_id) references patrons(p_id)
   );
@@ -183,7 +183,7 @@ create table journals_checkout
   duedate TIMESTAMP,
   p_id VARCHAR(20),
   l_id NUMBER(2),
-  CONSTRAINT journals_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
+  CONSTRAINT journals_checkout_pk PRIMARY KEY(resource_id,cehckoutdate,l_id,p_id),
   CONSTRAINT jcheckout_journals_fk FOREIGN KEY (resource_id,l_id) REFERENCES journals(issn,l_id),
   CONSTRAINT jcheckout_patrons_fk FOREIGN KEY (p_id) references patrons(p_id)
   );
@@ -196,15 +196,9 @@ create table confp_checkout
   duedate TIMESTAMP,
   p_id VARCHAR2(20),
   l_id NUMBER(2),
-  CONSTRAINT cpcheckout_checkout_pk PRIMARY KEY(resource_id,l_id,p_id),
-<<<<<<< HEAD
-  CONSTRAINT cp_checkout_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),
-  CONSTRAINT cp_patrons_fk FOREIGN KEY (p_id) references patrons(p_id)
-=======
+  CONSTRAINT confp_checkout_pk PRIMARY KEY(resource_id,checkoutdate,l_id,p_id),
   CONSTRAINT cp_checkoutt_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),
-  CONSTRAINT cp_patron_fk FOREIGN KEY (p_id) references patrons
->>>>>>> 274e2b7a8bf230af38e1397281b4141d86bf2a08
-  );
+  CONSTRAINT cp_patron_fk FOREIGN KEY (p_id) references patrons);
 
 
 

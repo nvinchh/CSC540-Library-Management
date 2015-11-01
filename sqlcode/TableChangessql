@@ -131,9 +131,34 @@ alter table confp_checkout
 add returndate TIMESTAMP;
 
 
----add fine and status
+---add fine and status in journals
 alter table journals_checkout
 add fine NUMBER(5) Default 0;
 
 alter table journals_checkout
 add Status VARCHAR2(5) Default Null;
+
+alter table journals_checkout
+modify returndate Timestamp Default Null;
+
+--add fine and status in confp_checkout
+
+alter table confp_checkout
+add fine NUMBER(5) Default 0;
+
+alter table confp_checkout
+add Status VARCHAR2(5) Default Null;
+
+alter table confp_checkout
+modify returndate Timestamp Default Null;
+
+--add fine and status in books_checkout
+
+alter table books_checkout
+add fine NUMBER(5) Default 0;
+
+alter table books_checkout
+add Status VARCHAR2(5) Default Null;
+
+alter table books_checkout
+modify returndate Timestamp Default Null;

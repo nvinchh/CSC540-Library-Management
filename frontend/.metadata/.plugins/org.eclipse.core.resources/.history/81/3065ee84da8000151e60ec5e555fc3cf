@@ -25,7 +25,6 @@ public class DepartmentSearch extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField departmentNametextField;
-	private final DepartmentTableModel rowshow;
 	private JTable table;
 	private StudentDAO studentDAO;
 
@@ -105,21 +104,15 @@ public class DepartmentSearch extends JFrame {
 			}
 		});
 		panel.add(btnSearch);
-				
-				JButton showrow = new JButton("showrow");
-				showrow.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						
-					}
-				});
-				panel.add(showrow);
 		
 				JScrollPane scrollPane = new JScrollPane();
 				panel.add(scrollPane);
 				
 						table = new JTable();
 						scrollPane.setViewportView(table);
+		
+		JButton btnNewButton = new JButton("New button");
+		panel.add(btnNewButton);
 	}
 
 }

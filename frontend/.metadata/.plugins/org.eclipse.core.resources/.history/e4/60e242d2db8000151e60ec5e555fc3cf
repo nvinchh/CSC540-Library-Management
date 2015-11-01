@@ -109,7 +109,7 @@ public class DepartmentSearch extends JFrame {
 				JButton showrow = new JButton("showrow");
 				showrow.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						rowshow=new DepartmentTableModel();
 						
 					}
 				});
