@@ -24,6 +24,7 @@ CREATE TABLE teaches
  queue_no_b Number(2),
  p_id VARCHAR2(20),
  l_id NUMBER(2),
+ ptype CHAR(1),
  CONSTRAINT queue_books_pk PRIMARY KEY(resource_id,l_id,p_id),
  CONSTRAINT b_queue_fk FOREIGN KEY (resource_id,l_id) REFERENCES books(isbn,l_id),
  CONSTRAINT b_patrons_fk FOREIGN KEY (p_id) references patrons 
@@ -46,6 +47,7 @@ create table queue_confpro
  resource_id VARCHAR2(20),
  queue_no_cp Number(2),
  p_id VARCHAR2(20),
+ ptype CHAR(1),
  l_id NUMBER(2),
  CONSTRAINT queue_confpro_pk PRIMARY KEY(resource_id,l_id,p_id),
  CONSTRAINT cp_queue_fk FOREIGN KEY (resource_id,l_id) REFERENCES confproceedings(conf_num,l_id),

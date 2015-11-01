@@ -87,8 +87,8 @@ public class FacultyLogin extends JFrame {
 
 				if (result == 1) {
                   setVisible(false);
-                  StudentHome student=new StudentHome();
-                  student.setVisible(true);
+                  FacultyHome faculty = new FacultyHome();
+                  faculty.setVisible(true);
                   }
 				
 				else

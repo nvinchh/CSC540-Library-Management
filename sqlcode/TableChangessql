@@ -98,6 +98,11 @@ modify title VARCHAR2(30);
 alter table econfproceedings
 modify conf_name VARCHAR2(30);
 
+<<<<<<< HEAD
+alter table queue_books
+add (ptype CHAR(1));
+
+=======
 --books_checkout (making checkout time a primary key)
 
 alter table books_checkout
@@ -137,6 +142,7 @@ add fine NUMBER(5) Default 0;
 
 alter table journals_checkout
 add Status VARCHAR2(5) Default Null;
+<<<<<<< HEAD
 
 alter table journals_checkout
 modify returndate Timestamp Default Null;
@@ -162,3 +168,6 @@ add Status VARCHAR2(5) Default Null;
 
 alter table books_checkout
 modify returndate Timestamp Default Null;
+=======
+>>>>>>> 81f32fd2873e1175d94b15fd24ed7b818f02889a
+>>>>>>> 5e76463fb1671e4ea643a157cfcebc2d1e5ecf69
