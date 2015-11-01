@@ -7,6 +7,8 @@ BEGIN
  INTO qCount
  FROM QUEUE_CONFPRO
  WHERE l_id = bLid AND resource_id = bISBN;
+  update CONFP_CHECKOUT set status='N' where RESOURCE_ID=bISBN AND P_ID=patron_Id AND L_ID=bLid AND RETURNDATE IS NULL AND 
+ localtimestamp > duedate;
  update CONFP_CHECKOUT set RETURNDATE=localtimestamp where RESOURCE_ID=bISBN AND P_ID=patron_Id AND L_ID=bLid AND RETURNDATE IS NULL;
  update CONFPROCEEDINGS set QUANTITY=QUANTITY+1 where CONF_NUM=bISBN AND L_ID=bLid;
   if(qCount>0) then

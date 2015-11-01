@@ -7,6 +7,8 @@ BEGIN
  INTO qCount
  FROM queue_journals
  WHERE l_id = bLid AND resource_id = bISBN;
+   update journals_checkout set status='N' where RESOURCE_ID=bISBN AND P_ID=patron_Id AND L_ID=bLid AND RETURNDATE IS NULL AND 
+ localtimestamp > duedate;
  update journals_checkout set RETURNDATE=localtimestamp where RESOURCE_ID=bISBN AND P_ID=patron_Id AND L_ID=bLid AND RETURNDATE IS NULL;
  update journals set QUANTITY=QUANTITY+1 where ISSN=bISBN AND L_ID=bLid;
   if(qCount>0) then

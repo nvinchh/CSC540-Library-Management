@@ -7,6 +7,8 @@ BEGIN
  INTO qCount
  FROM queue_books
  WHERE l_id = bLid AND resource_id = bISBN;
+ update books_checkout set status='N' where RESOURCE_ID=bISBN AND P_ID=patron_Id AND L_ID=bLid AND RETURNDATE IS NULL AND 
+ localtimestamp > duedate;
  update books_checkout set RETURNDATE=localtimestamp where RESOURCE_ID=bISBN AND P_ID=patron_Id AND L_ID=bLid AND RETURNDATE IS NULL;
  update BOOKS set B_QUANTITY=B_QUANTITY+1 where ISBN=bISBN AND L_ID=bLid;
   if(qCount>0) then
