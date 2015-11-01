@@ -8,6 +8,7 @@ begin
     FROM CONFP_CHECKOUT J
     WHERE J.P_ID = patron_Id
     AND J.RESOURCE_ID=cISSN
+    AND J.RETURNDATE=NULL
     AND J.L_ID=cLid;
 if(pId=1) then
 return true;
