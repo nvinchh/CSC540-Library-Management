@@ -18,7 +18,7 @@ BEGIN
                  --DBMS_OUTPUT.put_line('here2');
                SELECT QUANTITY INTO  qty FROM JOURNALS WHERE (ISSN = jISSN AND L_ID = jLid);
                if(qty>0) then
-                  insert into JOURNALS_CHECKOUT values(jISSN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronId,jLid,null,0,null);
+                  insert into JOURNALS_CHECKOUT values(jISSN,LOCALTIMESTAMP,LOCALTIMESTAMP+interval '12' hour,patronId,jLid,null,0,null);
                   update journals set quantity=(qty-1) where( ISSN=jISSN AND L_ID=jLid);
                ELSE
                if(alreayQueuedJournal(patronId,jISSN,jLid)=false)then 
@@ -36,6 +36,7 @@ CREATE OR REPLACE PROCEDURE BCheckout(bISBN VARCHAR2,jLid NUMBER,patronId VARCHA
 IS
      varType CHAR;
      qty NUMBER;
+     dueDate timestamp;
 BEGIN
 --DBMS_OUTPUT.PUT_LINE('here1');
 --Determinw whether faculty or student
@@ -43,7 +44,11 @@ BEGIN
    INTO  varType
     FROM PATRONS P
     WHERE P.P_ID = patronId;
-
+   if(varType='S') then
+                  dueDate := LOCALTIMESTAMP + 14;
+                  else
+                  dueDate := LOCALTIMESTAMP + 30;
+                  end if;
 -- Check whether in hold or not
  if(checkHold(patronId,varType)) then
  --DBMS_OUTPUT.PUT_LINE('here2');
@@ -52,7 +57,7 @@ BEGIN
        if(alreayIssuedBook(patronId,bISBN,jLid)=false) then
                SELECT B_QUANTITY INTO  qty FROM BOOKS WHERE (ISBN = bISBN AND L_ID = jLid);
                if(qty>0) then
-                  insert into BOOKS_CHECKOUT values(bISBN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronId,jLid,null,0,null);
+                  insert into BOOKS_CHECKOUT values(bISBN,LOCALTIMESTAMP,dueDate,patronId,jLid,null,0,null);
                   update BOOKS set B_QUANTITY=(qty-1) where( ISBN=bISBN AND L_ID=jLid);
                ELSE
                 if(alreayQueuedbooks(patronId,bISBN,jLid)= false) then
@@ -63,12 +68,13 @@ BEGIN
        end if;
     else
     --DBMS_OUTPUT.PUT_LINE('here44');
+    dueDate := LOCALTIMESTAMP + interval '4' hour;
        if(checkPatronCourse(bISBN,patronId)) then
        --DBMS_OUTPUT.PUT_LINE('here5');
                if(alreayIssuedBook(patronId,bISBN,jLid)=false) then
                SELECT B_QUANTITY INTO  qty FROM BOOKS WHERE (ISBN = bISBN AND L_ID = jLid);
                if(qty>0) then
-                  insert into BOOKS_CHECKOUT values(bISBN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronID,jLid,null,0,null);
+                  insert into BOOKS_CHECKOUT values(bISBN,LOCALTIMESTAMP,dueDate,patronID,jLid,null,0,null);
                   update BOOKS set B_QUANTITY=(qty-1) where( ISBN=bISBN AND L_ID=jLid);
                if(alreayQueuedbooks(patronId,bISBN,jLid)= false) then
                 queueBook(patronId, bISBN, jLid, varType);

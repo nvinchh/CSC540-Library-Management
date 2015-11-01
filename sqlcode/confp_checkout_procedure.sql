@@ -18,7 +18,7 @@ BEGIN
         --DBMS_OUTPUT.PUT_LINE('Here4');
                SELECT QUANTITY INTO  qty FROM CONFPROCEEDINGS WHERE (CONF_NUM = cISSN AND L_ID = cLid);
                if(qty>0) then
-                  insert into CONFP_CHECKOUT values(cISSN,LOCALTIMESTAMP,LOCALTIMESTAMP+12,patronId,cLid,null,0,null);
+                  insert into CONFP_CHECKOUT values(cISSN,LOCALTIMESTAMP,LOCALTIMESTAMP+ interval '12' hour,patronId,cLid,null,0,null);
                   update CONFPROCEEDINGS set quantity=(qty-1) where( CONF_NUM=cISSN AND L_ID=cLid);
                else
                   if(alreayQueuedconfproceedings(patronId,cISSN,cLid)=false)then 
