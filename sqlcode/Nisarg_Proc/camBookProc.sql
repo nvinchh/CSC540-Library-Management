@@ -1,11 +1,18 @@
--- Procedure for camera booking/reservation
-CREATE OR REPLACE PROCEDURE camBookProc (cameraId VARCHAR2, patronId VARCHAR2, requesteddt TIMESTAMP)
+create or replace PROCEDURE CAMBOOKPROC 
+(
+  CAMERAID IN VARCHAR2 
+, PATRONID IN VARCHAR2 
+, REQUESTEDDT IN DATE)
 IS
-	duedt TIMESTAMP;
-	libId NUMBER;
+  checkoutdt TIMESTAMP;
+  duedt TIMESTAMP;
+  libId NUMBER;
 BEGIN
-	duedt := requesteddt + 7;
+  checkoutdt := requesteddt + interval '9' hour;
+  duedt := requesteddt + 6;
+  duedt := duedt + interval '18' hour;
+  DBMS_OUTPUT.PUT_LINE('Due date: '||duedt);
 	SELECT l_id INTO libId FROM camera C WHERE C.cam_id = cameraId;
 	INSERT INTO camera_checkout(resource_id, checkoutdate, duedate, p_id, l_id, claimed)
-	VALUES (cameraId, requesteddt, duedt, patronId, libId, 'NO');
-END;
+	VALUES (cameraId, checkoutdt, duedt, patronId, libId, 'NO');
+END CAMBOOKPROC;
