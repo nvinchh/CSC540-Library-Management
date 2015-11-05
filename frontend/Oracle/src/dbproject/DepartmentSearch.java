@@ -17,6 +17,8 @@ import javax.swing.JTable;
 
 import java.util.List;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import dbproject.Department;
 import dbproject.StudentDAO;
@@ -25,7 +27,6 @@ public class DepartmentSearch extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField departmentNametextField;
-	private final DepartmentTableModel rowshow;
 	private JTable table;
 	private StudentDAO studentDAO;
 
@@ -106,14 +107,7 @@ public class DepartmentSearch extends JFrame {
 		});
 		panel.add(btnSearch);
 				
-				JButton showrow = new JButton("showrow");
-				showrow.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						
-					}
-				});
-				panel.add(showrow);
+				
 		
 				JScrollPane scrollPane = new JScrollPane();
 				panel.add(scrollPane);

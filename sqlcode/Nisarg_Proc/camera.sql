@@ -1,16 +1,16 @@
 CREATE TABLE camera
 (cam_id VARCHAR2(15),
-make VARCHAR2(15),
-model VARCHAR2(10),
+make VARCHAR2(30),
+model VARCHAR2(30),
 memory VARCHAR2(10),
-lens VARCHAR2(15),
+lens VARCHAR2(30),
 l_id NUMBER(2),
 CONSTRAINT camera_pk PRIMARY KEY (cam_id),
 CONSTRAINT cam_lib_fk FOREIGN KEY (l_id) REFERENCES library(l_id)
 );
 
 CREATE TABLE camera_checkout
-(resource_id VARCHAR2(15),
+(resource_id VARCHAR2(30),
 checkoutdate TIMESTAMP,
 duedate TIMESTAMP,
 returndate TIMESTAMP,

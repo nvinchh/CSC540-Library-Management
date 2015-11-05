@@ -1,0 +1,107 @@
+
+CREATE or REPLACE procedure student_fine
+IS
+cursor s_fine is select c.p_id,sum(c.fine) as fine
+from (select j.p_id,sum(j.fine) as fine
+from journals_checkout j
+where j.fine>0 and (j.STATUS not like 'P'  or j.STATUS is Null) and j.p_id like '%S%' 
+group by j.p_id 
+Union
+select b.p_id,sum(b.fine) as fine
+from BOOKS_CHECKOUT b
+where b.fine>0 and (b.STATUS not like 'P'  or b.STATUS is Null) and b.p_id like '%S%'  
+group by b.p_id
+UNION
+select cp.p_id,sum(cp.fine) as fine
+from CONFP_CHECKOUT cp
+where cp.fine>0 and (cp.STATUS not like 'P'  or cp.STATUS is Null) and cp.p_id like '%S%' 
+group by cp.p_id
+union
+select cc.p_id,sum(cc.fine) as fine
+from CAMERA_CHECKOUT cc
+where cc.fine>0 and (cc.STATUS not like 'P'  or cc.STATUS is Null) and cc.p_id like '%S%' 
+group by cc.p_id) c
+group by c.p_id;
+sresource_id VARCHAR2(20);
+sfine Number;
+Begin
+            Open s_fine;
+            LOOP
+            fetch s_fine into sresource_id,sfine;
+            exit when s_fine%notfound;
+            update students set s_credit=sfine where s_id=sresource_id;
+            END LOOP;
+            commit;
+END;            
+
+exec student_fine;
+
+Begin            
+DBMS_SCHEDULER.CREATE_JOB(job_name=>'bfinecalculation',
+                          job_type=>'Stored_Procedure',
+                          JOB_ACTION=>'SYS.STUDENT_FINE',
+                          start_date=>'01-NOV-2015 12:05:00 AM',
+                          repeat_interval=>'freq=Daily',
+                          end_date=>NULL,
+                          enabled=>TRUE,
+                          comments=>'Calls fine procedure to calculate fines for books table');
+End;
+
+Begin            
+DBMS_SCHEDULER.CREATE_JOB(job_name=>'studentcalculation',
+                          job_type=>'Stored_Procedure',
+                          JOB_ACTION=>'SYS.STUDENT_FINE',
+                          start_date=>'02-NOV-2015 12:06:00 AM',
+                          repeat_interval=>'freq=Daily',
+                          end_date=>NULL,
+                          enabled=>TRUE,
+                          comments=>'Calls studet fine procedure to calculate s_credit for  table');
+End;
+
+
+CREATE or REPLACE procedure faculty_fine
+IS
+cursor f_fine is select c.p_id,sum(c.fine) as fine
+from (select j.p_id,sum(j.fine) as fine
+from journals_checkout j
+where j.fine>0 and (j.STATUS not like 'P'  or j.STATUS is Null) and j.p_id like '%F%' 
+group by j.p_id 
+Union
+select b.p_id,sum(b.fine) as fine
+from BOOKS_CHECKOUT b
+where b.fine>0 and (b.STATUS not like 'P'  or b.STATUS is Null) and b.p_id like '%F%'  
+group by b.p_id
+UNION
+select cp.p_id,sum(cp.fine) as fine
+from CONFP_CHECKOUT cp
+where cp.fine>0 and (cp.STATUS not like 'P'  or cp.STATUS is Null) and cp.p_id like '%F%' 
+group by cp.p_id
+Union
+select cc.p_id,sum(cc.fine) as fine
+from CAMERA_CHECKOUT cc
+where cc.fine>0 and (cc.STATUS not like 'P'  or cc.STATUS is Null) and cc.p_id like '%F%' 
+group by cc.p_id
+) c
+group by c.p_id;
+fresource_id VARCHAR2(20);
+ffine Number;
+Begin
+            Open f_fine;
+            LOOP
+            fetch f_fine into fresource_id,ffine;
+            exit when f_fine%notfound;
+            update FACULTY set f_credit=ffine where f_id=fresource_id;
+            END LOOP;
+            commit;
+END;
+
+Begin            
+DBMS_SCHEDULER.CREATE_JOB(job_name=>'facultycreditcalculation',
+                          job_type=>'Stored_Procedure',
+                          JOB_ACTION=>'SYS.FACULTY_FINE',
+                          start_date=>'02-NOV-2015 12:06:00 AM',
+                          repeat_interval=>'freq=Daily',
+                          end_date=>NULL,
+                          enabled=>TRUE,
+                          comments=>'Calls faculty fine procedure to calculate f_credit for  table');
+End;

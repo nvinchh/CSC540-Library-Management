@@ -1,0 +1,13 @@
+create or replace PROCEDURE VIEWBOOKINGS 
+(
+  PATRONID IN VARCHAR2,
+  viewbk OUT SYS_REFCURSOR
+)
+IS 
+BEGIN
+  OPEN viewbk FOR SELECT RC.room_no, RC.checkouttime, L.l_name
+  FROM room_checkout RC, library L
+  WHERE RC.L_ID = L.L_ID
+  AND RC.P_ID = PATRONID
+  AND RC.CHECKOUTTIME >= LOCALTIMESTAMP;
+END VIEWBOOKINGS;

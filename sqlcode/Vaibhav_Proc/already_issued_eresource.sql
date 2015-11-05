@@ -1,4 +1,4 @@
-create or replace function alreayIssuedEBook(patron_Id in VARCHAR2, eISBN in VARCHAR2)
+create or replace function alreadyIssuedEBook(patron_Id in VARCHAR2, eISBN in VARCHAR2)
 return BOOLEAN
 is
   pId NUMBER;
@@ -8,8 +8,8 @@ begin
     FROM EBOOKS_CHECKOUT E
     WHERE E.P_ID=patron_Id
     AND E.RESOURCE_ID=eISBN
-    AND E.RETURNDATE=NULL;
-if(pId=1) then
+    AND E.RETURNDATE IS NULL;
+if(pId>0) then
 return true;
 else
 return false;
@@ -42,7 +42,7 @@ return true;
 end if;
 end;
 
-create or replace function alreayIssuedEJournal(patron_Id in VARCHAR2, eISSN in VARCHAR2)
+create or replace function alreadyIssuedEJournal(patron_Id in VARCHAR2, eISSN in VARCHAR2)
 return BOOLEAN
 is
   pId NUMBER;
@@ -52,8 +52,8 @@ begin
     FROM EJOURNALS_CHECKOUT E
     WHERE E.P_ID=patron_Id
     AND E.RESOURCE_ID=eISSN
-    AND E.RETURNDATE=NULL;
-if(pId=1) then
+    AND E.RETURNDATE IS NULL;
+if(pId>0) then
 return true;
 else
 return false;
@@ -71,8 +71,8 @@ begin
     FROM ECONFP_CHECKOUT E
     WHERE E.P_ID=patron_Id
     AND E.RESOURCE_ID=eCONFNUM
-    AND E.RETURNDATE=NULL;
-if(pId=1) then
+    AND E.RETURNDATE IS NULL;
+if(pId>0) then
 return true;
 else
 return false;

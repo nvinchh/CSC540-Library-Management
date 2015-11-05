@@ -1,40 +1,3 @@
-CREATE TABLE ALL_BOOKS_TABLE
-  (
-    ISBN  VARCHAR2(20),
-    title VARCHAR2(20),
-    c_id  VARCHAR2(20),
-    CONSTRAINT courses_fk_resv FOREIGN KEY (c_id) REFERENCES courses(c_id),
-    CONSTRAINT books_pk_resv PRIMARY KEY (ISBN)
-  );
-CREATE TABLE Reserved
-  (
-    rsvd_id  VARCHAR2(20),
-    f_id     VARCHAR2(20),
-    rsv_s_dt TIMESTAMP(6),
-    rsv_e_dt TIMESTAMP(6),
-    c_id     VARCHAR2(20),
-    CONSTRAINT rsvd_id_pk PRIMARY KEY (rsvd_id),
-    CONSTRAINT rsv_allbooks_fk FOREIGN KEY(rsvd_id) REFERENCES ALL_BOOKS_TABLE(ISBN),
-    CONSTRAINT rsv_teaches_fk FOREIGN KEY(f_id,c_id) REFERENCES TEACHES(f_id,c_id)
-  );
-INSERT INTO TEACHES VALUES
-  ('F1','CH101'
-  );
-INSERT INTO ALL_BOOKS_TABLE VALUES
-  ('B1','Intro to Chemistry','CH101'
-  );
---SELECT TO_CHAR (LOCALTIMESTAMP) "NOW" FROM DUAL;
---SELECT TO_TIMESTAMP((ADD_MONTHS(LOCALTIMESTAMP, 4))) "NOW" FROM DUAL;
---SELECT TO_TIMESTAMP((LOCALTIMESTAMP + INTERVAL '12' HOUR)) "NOW" FROM DUAL;
-INSERT
-INTO RESERVED VALUES
-  (
-    'B1',
-    'F1',
-    LOCALTIMESTAMP,
-    TO_TIMESTAMP((ADD_MONTHS(LOCALTIMESTAMP, 4))),
-    'CH101'
-  );
 CREATE OR REPLACE PROCEDURE Fetchcourseid
   (
     faculty_id IN VARCHAR2,
@@ -52,21 +15,27 @@ BEGIN
   fetchcourseid('F1', course_id);
   DBMS_OUTPUT.PUT_LINE(course_id);
 END;
+
 CREATE OR REPLACE PROCEDURE ShowAllBooks(
-    faculty_id VARCHAR2)
+  faculty_id IN VARCHAR2,
+  show_books OUT SYS_REFCURSOR
+    )
 IS
-  course_id VARCHAR2(20);
-  isbn      VARCHAR2(20);
-  title     VARCHAR2(20);
+  course_id  VARCHAR2(20);
+  isbn  VARCHAR2(20);
+  title    VARCHAR2(20);
   author    VARCHAR2(20);
-  b_edition VARCHAR2(20);
-  p_year    VARCHAR(20);
-  publisher VARCHAR2(20);
-  r_status  VARCHAR(20);
+  b_edition  VARCHAR2(20);
+  p_year     VARCHAR2(20);
+  publisher  VARCHAR2(20);
+  r_status  VARCHAR2(20);
   loopcount NUMBER(10);
-  CURSOR show_books
-  IS
-    SELECT isbn,
+
+BEGIN
+
+ -- SELECT c_id INTO course_id FROM TEACHES WHERE f_id LIKE faculty_id;
+    OPEN show_books FOR
+      SELECT isbn,
       title,
       author,
       b_edition,
@@ -75,23 +44,21 @@ IS
       c_id,
       r_status
     FROM Books
-    WHERE c_id LIKE course_id;
-BEGIN
-  SELECT c_id INTO course_id FROM TEACHES WHERE f_id LIKE faculty_id;
-  SELECT COUNT(*) INTO loopcount FROM BOOKS WHERE C_ID LIKE course_id;
-  OPEN show_books;
-  LOOP
-    FETCH show_books
-    INTO isbn,
-      title,
-      author,
-      b_edition,
-      p_year,
-      publisher,
-      course_id,
-      r_status;
-    EXIT
-  WHEN show_books%notfound;
+    WHERE c_id LIKE (SELECT c_id FROM TEACHES WHERE f_id LIKE faculty_id);
+  --SELECT COUNT(*) INTO loopcount FROM BOOKS WHERE C_ID LIKE course_id;
+
+--  LOOP
+--    FETCH show_books
+--    INTO isbn,
+--      title,
+--      author,
+--      b_edition,
+--      p_year,
+--      publisher,
+--      course_id,
+--      r_status;
+--    EXIT
+--  WHEN show_books%notfound;
     DBMS_OUTPUT.PUT_LINE('ISBN :  '|| isbn);
     DBMS_OUTPUT.PUT_LINE('Title :  '|| title);
     DBMS_OUTPUT.PUT_LINE('Author :  '|| author);
@@ -99,9 +66,10 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Published Year :  '|| p_year);
     DBMS_OUTPUT.PUT_LINE('Course id is ' || course_id );
     DBMS_OUTPUT.PUT_LINE('Loop count is ' || loopcount );
-    EXIT
-  WHEN show_books%ROWCOUNT=0;
-  END LOOP;
+    --EXIT
+  --WHEN show_books%ROWCOUNT=0;
+  --END LOOP;
+Commit;
 END;
 EXEC ShowAllBooks('F1');
 INSERT INTO ALL_BOOKS_TABLE VALUES
@@ -125,18 +93,21 @@ INTO BOOKS VALUES
 CREATE OR REPLACE PROCEDURE ReserveByFaculty
   (
     book_isbn  IN RESERVED.RSVD_ID%TYPE,
-    faculty_id IN RESERVED.F_ID%TYPE
+    faculty_id IN RESERVED.F_ID%TYPE,
+    r_status OUT VARCHAR2,
+    title OUT VARCHAR2,
+    course_id OUT VARCHAR2,
+    result OUT VARCHAR2
   )
 IS
-  r_status  VARCHAR2(20);
-  title     VARCHAR2(20);
-  course_id VARCHAR2(20);
 BEGIN
   SELECT r_status INTO r_status FROM Books WHERE isbn LIKE book_isbn;
   SELECT title INTO title FROM books WHERE isbn LIKE book_isbn;
   SELECT c_id INTO course_id FROM books WHERE isbn LIKE book_isbn;
   IF(r_status = 'reserved') THEN
-    DBMS_OUTPUT.PUT_LINE('Book ' || title || ' is already reserved');
+    result := ('Book ' || title || ' is already reserved');
+    DBMS_OUTPUT.PUT_LINE('result ' ||result);
+    --DBMS_OUTPUT.PUT_LINE('Book ' || title || ' is already reserved');
   elsif (r_status = 'unreserved') THEN
     INSERT
     INTO reserved VALUES
@@ -148,11 +119,16 @@ BEGIN
         course_id
       );
     UPDATE books SET r_status = 'reserved' WHERE isbn LIKE book_isbn;
-    DBMS_OUTPUT.PUT_LINE('Book ' || title || ' has been reserved');
+    result := ('Book ' || title || '  has been reserved');
+    --DBMS_OUTPUT.PUT_LINE('Book ' || title || ' has been reserved');
+    DBMS_OUTPUT.PUT_LINE('result ' ||result);
   END IF;
+  commit;
 END;
 EXEC ReserveByFaculty('B2','F1');
 ALTER TABLE books ADD r_status VARCHAR2(10);
+select * from reserved;
+select * from BOOKS
 /*FOR i in 1..loopcount loop
 SELECT isbn into isbn  FROM ALL_BOOKS_TABLE WHERE c_id like course_id;
 --SELECT isbn,title, author, b_edition, p_year, publisher, c_id, r_status INTO isbn,title, author, b_edition, p_year, publisher, course_id, r_status FROM BOOKS B WHERE B.C_ID like course_id;

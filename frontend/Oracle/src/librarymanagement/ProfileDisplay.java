@@ -7,10 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -70,6 +73,7 @@ public class ProfileDisplay extends JFrame {
 					ProfileTableModel profile= new ProfileTableModel(profileOutput);
 					System.out.println(profileOutput.size());
 					table.setModel(profile);
+					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -78,6 +82,32 @@ public class ProfileDisplay extends JFrame {
 			}
 		});
 		panel.add(btnGetProfile);
+		
+		
+		JButton showrow = new JButton("Show Row");
+		showrow.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showrow.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						table.addMouseListener(new MouseAdapter() {
+							  public void mouseClicked(MouseEvent e) {
+							    if (e.getClickCount() == 1) {
+							      JTable target = (JTable)e.getSource();
+							      int row = target.getSelectedRow();
+							      int column = target.getSelectedColumn();
+							      final int value = (Integer) target.getValueAt(row, column);
+							      JOptionPane.showMessageDialog(null,value);
+							      // do some action if appropriate column
+							    }
+							  }
+							});
+					}
+				});
+				panel.add(showrow);
+			}
+		});
+		
+		panel.add(showrow);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
